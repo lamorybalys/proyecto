@@ -1,0 +1,72 @@
+{% extends '../../base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<style type="text/css">
+  .input-error{
+    border-bottom:1px solid red !important;
+  }
+</style>
+<div class="row">
+	<div class="col s12">
+		<div class="card-panel">
+            <h4 class="title text-capitalize">Inscribir en el Seguro social</h4>
+            {% if messages %}
+          {% for message in messages %}
+        <div id="card-alert" class="card light-blue">
+          <div class="card-content white-text">
+            <p><i class="material-icons prefix">check</i>{{message}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+			<div class="row">
+                <div class="col s12 m12 l12" >
+                    <div id="card-alert" class="card light-blue" style="display:none;">
+                      <div class="card-content white-text">
+                        <p>NEWS : You have done 5 actions.</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="center">
+                     <img src="{% static 'images/ivvs.jpg' %}" alt="" width="340">
+                </div>
+                {% if not seguro %}
+                  <form class="col s12" id="formValidate" role="form" method="POST" name="formulario">
+                      {% csrf_token %}
+                      <!-- {{ segu_social.as_p }} -->
+                        <h4 style="text-align: center;">¿Desea solicitar el registro al seguro social?</h4>
+                      <div class="row hide">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">folder</i>
+                                <input type="text" value="{{ expediente.id }}" name="expediente" readonly>
+                                
+                                <label for="expediente">Expediente</label>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col s12 center"> 
+                                <button class="btn waves-effect waves-light ap">Si</button>  
+                                <a href="/trabaexpe/admin/" class="btn waves-effect waves-light">Volver</a>
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+                  {% else %}
+                  {% if not seguro.estatus == 'Aprobada' %}
+                  <h4 style="text-align: center;">Ya tiene una solicitud pendiente.</h4>
+                  {% else %}
+                  <h4 style="text-align: center;">Ya estas inscrito en el seguro social.</h4>
+
+                  {% endif %}
+                  <div class="row center">
+                    <a href="/trabaexpe/admin/" class="btn waves-effect waves-light ">Volver</a>
+
+                  </div>
+                  {% endif %}
+			</div>
+		</div>
+	</div> 
+</div>
+{% endblock %}
+

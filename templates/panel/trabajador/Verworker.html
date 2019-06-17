@@ -1,0 +1,113 @@
+{% extends '../../base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="flight-card" class="card">
+        <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+          <div class="card-title">
+            
+            <div class="col s2 m2 l2 center-align">
+                <h4 class="flight-card-title">Trabajador N° {{traba.cedu_trab}}</h4>
+                <i class="material-icons" style="color: white;">accessibility</i>
+            </div>
+          </div>
+        </div>
+        <div class="white-text">
+          <div class="card-content" style="    background: #ffffffe6">
+            <div class="row">
+              <div class="col s4 m4 l4 center-align center-align ">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Nombre</h5>
+                  <h6 style="color: #0d4978;">{{ traba.nomb_trab }}</h6>
+                </div>
+              </div>
+              <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Apellido</h5>
+                  <h6 style="color: #0d4978;">{{ traba.ape_trab }}</h6>
+                </div>
+              </div>
+              <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Codigo de telefono</h5>
+                        <h6 style="color: #0d4978;">{{ traba.cod_tele }}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s4 m4 l4 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Telefono</h5>
+                    <h6 style="color: #0d4978;">{{ traba.telefono }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Sexo</h5>
+                    <h6 style="color: #0d4978;">{{ traba.sexo }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Numero de Ric</h5>
+                        <h6 style="color: #0d4978;">{{ traba.num_ric }}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s4 m4 l4 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Fecha de Ingreso Publicado</h5>
+                    <h6 style="color: #0d4978;">{{ traba.fech_ing_pub }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Fecha de Ingreso Institucional</h5>
+                    <h6 style="color: #0d4978;">{{ traba.fech_ing_inst }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Codigo de Rac</h5>
+                        <h6 style="color: #0d4978;">{{ traba.cod_rac }}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s4 m4 m4 center-align center-align ">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Cargos</h5>
+                        <h6 style="color: #0d4978;">{{ traba.cargos }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Fecha de nacimiento</h5>
+                        <h6 style="color: #0d4978;">{{ traba.fech_naci }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Estatus</h5>
+                        <h6 style="color: #0d4978;">{{ traba.estat_traba }}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <a href="/trabaexpe/listworker/" class="btn waves-effect
+                    waves-light right">Volver</a>
+                <a href="#" class="btn waves-effect
+                waves-light right" target="_blank"><span class="">Imprimir</span>
+                </a>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!---->
+{% endblock %}
+

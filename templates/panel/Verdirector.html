@@ -1,0 +1,45 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="flight-card" class="card">
+        <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+          <div class="card-title">
+            
+            <div class="col s2 m2 l2 center-align">
+                <h4 class="flight-card-title">Director Cedula {{director.cedu_direc}}</h4>
+                <i class="material-icons" style="color: white;">supervisor_account</i>
+            </div>
+          </div>
+        </div>
+        <div class="white-text">
+          <div class="card-content" style="    background: #ffffffe6">
+            <div class="row">
+              <div class="col s4 m4 l4 center-align center-align ">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Nombre</h5>
+                  <h6 style="color: #0d4978;">{{ director.nomb_direc }}</h6>
+                </div>
+              </div>
+              <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Apellido</h5>
+                  <h6 style="color: #0d4978;">{{ director.apel_direc }}</h6>
+                </div>
+              </div>
+              <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Cargo</h5>
+                        <h6 style="color: #0d4978;">{{ director.carg_direc }}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <a href="/trabaexpe/listdire/" class="btn waves-effect
+                    waves-light right">Volver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

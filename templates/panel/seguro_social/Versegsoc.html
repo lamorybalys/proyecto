@@ -1,0 +1,221 @@
+{% extends '../../base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="flight-card" class="card">
+        <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+          <div class="card-title">
+            
+            <div class="col s2 m2 l2 center-align">
+                <h4 class="flight-card-title">Seguro Social N° {{segu_social.cod_seg_soc}}</h4>
+                <i class="material-icons" style="color: white;">archive</i>
+            </div>
+          </div>
+        </div>
+        <div class="white-text">
+          <div class="card-content" style="    background: #ffffffe6">
+            <div class="row">
+              <div class="col s4 m4 l4 center-align center-align ">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                  <h6 style="color: #0d4978;">{{ segu_social.expediente }}</h6>
+                </div>
+              </div>
+              <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Tipo</h5>
+                  <h6 style="color: #0d4978;">{{ segu_social.esta_seg_soc }}</h6>
+                </div>
+              </div>
+              <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                  <div class="flight-state">
+                      <h5 class="margin" style="color: #0d4978;">Estatus</h5>
+                      {% if segu_social.estatus == 'Aprobada' %}
+                          <h6 style="color: green;">{{ segu_social.estatus }}</h6>
+                      {% endif %}
+                      {% if segu_social.estatus == 'Rechazada' %}
+                          <h6 style="color: red;">{{ segu_social.estatus }}</h6>
+                      {% endif %}
+                      {% if segu_social.estatus == 'Pendiente' %}
+                          <h6 style="color: #0d4978;">{{ segu_social.estatus }}</h6>
+                      {% endif %}
+                      {% if segu_social.estatus == 'Procesando' %}
+                          <h6 style="color: #0d4978;">{{ segu_social.estatus }}</h6>
+                      {% endif %}
+                  </div>
+              </div>
+              {% if segu_social.observacion and segu_social.estatus == 'Procesando' %}
+              <div class="col s12 m12 l12 center-align center-align">
+                  <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">observación</h5>
+                    <h6 style="color: #0d4978;">{{ segu_social.observacion }}</h6>
+                  </div>
+                </div>
+              {% endif %}
+              {% if segu_social.estatus == 'Aprobada' %}
+              <div class="row">
+                <div class="col s6 m6 l6 center-align center-align ">
+                    <div class="flight-state">
+                      <h5 class="margin" style="color: #0d4978;">observación</h5>
+                      <h6 style="color: #0d4978;">{{ segu_social.observacion }}</h6>
+                    </div>
+                  </div>
+                <div class="col s6 m6 l6 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                      <h5 class="margin" style="color: #0d4978;">Fecha función</h5>
+                      <h6 style="color: #0d4978;">{{ segu_social.fech_func }}</h6>
+                    </div>
+                </div>
+                <div class="col s6 m6 l6 center-align center-align" style="color: #0d4978;">
+                    <div class="flight-state">
+                      <h5 class="margin" style="color: #0d4978;">Const_1402</h5>
+                      {% if segu_social.const_1402 == True %}
+                      <p> <i class="material-icons">check_circle</i> </p>
+                      {% else %}
+                      <p><i class="material-icons">highlight_off</i></p>
+                      {% endif %}
+                    </div>
+                </div>
+                <div class="col s6 m6 l6 center-align center-align flight-state-two" style="color: #0d4978;">
+                    <div class="flight-state">
+                      <h5 class="margin" style="color: #0d4978;">Const_1403</h5>
+                      {% if segu_social.const_1403 == True %}
+                      <p> <i class="material-icons">check_circle</i> </p>
+                      {% else %}
+                      <p><i class="material-icons">highlight_off</i></p>
+                      {% endif %}
+                    </div>
+                </div>
+
+
+              </div>
+              {% endif %}
+              
+            </div>
+            <br>
+            {% if user.is_analista_social and segu_social.estatus == 'Pendiente' or user.is_analista_social and segu_social.estatus == 'Procesando' %}
+            <form action="{% url 'Constancias:updSegSoc' pk=segu_social.pk %}" method="post" id="form" style="color: black;">
+              {% csrf_token %}
+            
+              <div class="row">
+              {% if segu_social.estatus == 'Pendiente'%}
+                <div class="row hide">
+                    <textarea class="materialize-textarea"  id="est" name="estatus">Procesando</textarea>
+                    <textarea class="materialize-textarea"  id="est2" name="estatus">Rechazada</textarea>
+
+                </div>
+                <div class="input-field col s12">
+                  <textarea name="observacion" id="obs" class="materialize-textarea" rows="1" cols="1"></textarea>
+                  <label for="obs">observación</label>
+                </div>
+                {% endif %}
+                {% if segu_social.estatus == 'Procesando' %}
+                  <div class="row hide">
+                      <textarea class="materialize-textarea"  id="est" name="estatus">Aprobada</textarea>
+                      <textarea class="materialize-textarea"  id="est2" name="estatus">Rechazada</textarea>
+    
+                  </div>
+                <div class="input-field col s12 hide">
+                    <textarea name="observacion" id="obs" class="materialize-textarea" rows="1" cols="1">{{segu_social.observacion}}</textarea>
+                    <label for="obs">observación</label>
+                  </div>
+                <div class="input-field col s6">
+                  <br>
+                  <input type="text" id="fecha" class="datepicker" name="fech_func" minlength="8">
+                  <label for="fecha" class="active">Fecha funcion</label>
+                </div>
+                <div class="col s6">
+                  <input name="const_1402" type="checkbox"
+                    aria-required="true" id="const_1402" class="only-one"/>
+                  <label for="const_1402">Const_1402 </label>
+                </div>
+                <div class="col s6">
+                    <input name="const_1403" type="checkbox" aria-required="true" id="const_1403" class="only-one"/>
+                    <label for="const_1403">Const_1403 </label>
+                  </div>
+                </div>
+                {% endif %}
+                    <div class="row">
+                        <div class="col s12 center">
+                            <button class="btn waves-effect ap" type="button">Aceptar</button>
+                            <button class="btn waves-effect red re" type="button">Rechazar</button>
+                        </div> 
+                      
+                    </div>
+            </form>
+            {% endif %}
+            <br>
+            <div class="row">
+                <a href="/constancias/listseg/" class="btn waves-effect
+                    waves-light right">Volver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript" src="{% static 'vendors/jquery.min.js' %}"></script>
+
+      <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
+
+
+<script>
+
+d = new Date();
+var month = d.getMonth()+1
+var day = d.getDate()+1
+output = d.getFullYear()+'/'+(month<10?'0':'')+month+'/'+(day<10?'0':'')+day
+mes = moment(output).add(3,'months').format('YYYY/MM/DD')
+$(document).ready(function(){
+  $('.datepicker1').on('mousedown',function(event){
+event.preventDefault();
+})
+
+$('.datepicker').pickadate({
+  
+  months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+  monthsShort: ["Eneno", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciciembre"],
+  weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+  weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+  weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"],
+  cancel: 'Cancelar',
+  clear: 'Limpiar',
+  today:'Hoy',
+  done: 'Ok',
+
+  min:new Date(),
+  format:'dd/mm/yyyy',
+
+});
+});
+
+$('.ap').on('click',function(e){
+    e.preventDefault()
+    $('#est2').attr('disabled','disabled')
+    if($('#fecha').length){
+      fecha = $('#fecha').val()
+      if(fecha == '' || fecha == null){
+        fecha = $('#fecha').focus()
+        return false;
+      }
+      console.log('si ta la fecha',fecha)
+    }else{
+      console.log('No hay')
+    }
+    if($('#obs').val().length <10){
+      $('#obs').focus();
+    }else{
+      
+      $('#form').submit()
+    }
+  });
+  $('.re').on('click',function(e){
+    e.preventDefault()
+    $('#est').attr('disabled','disabled')
+    if($('#obs').val().length <10){
+      $('#obs').focus();
+    }else{
+      $('#form').submit()
+    }
+  });
+</script>
+{% endblock %}

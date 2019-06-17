@@ -1,0 +1,276 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="title">Solicitudes de vacaciones</h4>
+            {% if messages %}
+              {% for message in messages %}
+            <div id="card-alert" class="card light-blue">
+              <div class="card-content white-text">
+                <p><i class="material-icons prefix">check</i>{{message}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+            <div class="row">
+                <form class="col s12" id="formValidate" role="form"
+                    method="POST" name="formulario">
+                    {% csrf_token %}
+                    <!-- {{ vaca.as_p }} -->
+                    <br>
+                    
+                    {% if user.is_trabajador %}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">beenhere</i>
+                                <select name="tipo_vaca" id="tipo_vaca" onchange="val()">
+                                    {% for x,y in vaca.fields.tipo_vaca.choices %}
+                                    <option value="{{ x }}"{% if vaca.fields.tipo_vaca.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="tipo_vaca">Tipo de vacaciones</label>
+                                <div><p class="err" style="color:red;"></p></div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="input-field col s12 periodo">
+                                <i class="material-icons prefix">power_input</i>
+                                
+                                <label for="per_vaca_dis_des" class="active">Periodo a disfrutar desde:</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">date_range</i>
+                                <input type="text" id="fech_inic" name="fech_inic" class="datepicker1" requerid>
+                                <label for="fech_inic">Fecha de inicio</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">date_range</i>
+                                <input type="date" id="fech_culm" name="fech_culm" readonly="" requerid aria-required="true">
+                                <label for="fech_culm" class="active">Fecha de culminacion</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">date_range</i>
+                                <input type="date" id="fech_rein" name="fech_rein" readonly="" requerid aria-required="true">
+                                <label for="fech_rein" class="active">Fecha de reintegro</label>
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    {% if user.is_analista_vacaciones %}
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">folder</i>
+                            <select name="expediente" id="expediente" >
+                                {% for x,y in vaca.fields.expediente.choices %}
+                                <option value="{{ x }}"{% if vaca.fields.expediente.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="expediente">Expediente</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">power_input</i>
+                            <input type="number" id="per_dis_has" name="per_vaca_dis_has" requerid aria-required="true">
+                            <label for="per_vaca_dis_has">Periodo a disfrutar hasta:</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">done</i>
+                            <input type="number" id="dias_habi" name="dias_hab"  requerid aria-required="true">
+                            <label for="dias_hab">Dias habiles</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">event</i>
+                            <input type="date" id="fech_reint" name="fech_reint" class="datepicker" requerid aria-required="true">
+                            <label for="fech_reint">Fecha de reintegro</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">description</i>
+                            <textarea id="obser" name="observacion" class="materialize-textarea"></textarea>
+                            <label for="observacion" class="">Observacion</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">chrome_reader_mode</i>
+                            <textarea id="coor" name="coordinacion" class="materialize-textarea"></textarea>
+                            <label for="coordinacion" class="">Coordinacion</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">assignment</i>
+                            <textarea id="direc_linea" name="direc_linea" class="materialize-textarea"></textarea>
+                            <label for="direc_linea" class="">Direccion de Linea</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">public</i>
+                            <textarea id="direc_gener" name="direc_gener" class="materialize-textarea"></textarea>
+                            <label for="direc_gener" class="">Direccion general</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">phone_forwarded</i>
+                            <textarea id="exten_tele" name="exten_tele" class="materialize-textarea"></textarea>
+                            <label for="exten_tele" class="">Extension telefonica</label>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    {% endif %}
+                    <div class="row">
+                        <button class="btn waves-effect waves-light
+                            right" type="submit" name="action"
+                            onclick="click()">Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                        <a href="#" class="btn waves-effect
+                            waves-light right">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <script type="text/javascript" src="{% static 'vendors/jquery.min.js' %}"></script>
+
+            <script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
+
+
+<script>
+
+    d = new Date();
+    var month = d.getMonth()+1
+    var day = d.getDate()+1
+    output = d.getFullYear()+'/'+(month<10?'0':'')+month+'/'+(day<10?'0':'')+day
+    mes = moment(output).add(3,'months').format('YYYY/MM/DD')
+    $(document).ready(function(){
+        $('.datepicker1').on('mousedown',function(event){
+    event.preventDefault();
+})
+     $("#id_periodo").material_select();
+    $('.datepicker1').pickadate({
+        
+        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthsShort: ["Eneno", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciciembre"],
+        weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+        weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+        weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"],
+        cancel: 'Cancelar',
+        clear: 'Limpiar',
+        today:'Hoy',
+        done: 'Ok',
+ 
+        min:new Date(mes),
+        format:'dd/mm/yyyy',
+        onOpen:function(){
+            periodo = $('#id_periodo')
+                if(periodo.length == 0){
+                    $('.err').html('Debe seleccionar el periodo a disfrutar.')
+                    this.close()
+                }
+        },
+        onClose:function(){
+            if($('#fech_inic').val() != ''){
+                function addWeekdays(date, days) {
+                  date = moment(date); // use a clone
+                  while (days > 0) {
+                    date = date.add(1, 'days');
+                    // decrease "days" only if it's a weekday.
+                    if (date.isoWeekday() !== 6 && date.isoWeekday() !== 7) {
+                      days -= 1;
+                    }
+                  }
+                  return date;
+                }
+                fec = String($('#fech_inic').val())
+                fecha = fec.split('/')
+                suma  = addWeekdays(moment(fecha[2]+'-'+fecha[1]+'-'+fecha[0]), dias);
+                dia = addWeekdays(moment(suma), 1);
+                $('#fech_rein').val(moment(dia).format('YYYY-MM-DD'))
+
+                $('#fech_culm').val(moment(suma).format('YYYY-MM-DD'))
+
+            }else{
+                $('#fech_culm').val('')
+
+            }
+        }
+
+    });
+  });
+    function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+$('.periodo').addClass('hide');
+var csrftoken = getCookie('csrftoken');
+dias = 0
+function val(){
+    $('.err').html('')
+    $('.periodo').addClass('hide');
+    $('#id_periodo').remove()
+    $('#fech_culm').val('')
+    $('#fech_inic').val('')
+    select = $('.select-wrapper')[1]
+    if(select != undefined){
+        select.remove()
+    }
+    data1 = {
+    }
+    data = {
+        'tipo_vaca':$('#tipo_vaca').val(),
+        data : JSON.stringify(data1),
+        csrfmiddlewaretoken:csrftoken,
+    }
+    $.ajax({
+        url:'{% url "Constancias:periodo" %}',
+        type:'POST',
+        data:data,
+        success:function(data){
+            
+            if(data[0].is_valid){
+                for(var i = 0;i<data[0].data.length;i++){
+                    option = '<option value="'+data[0].data[i].id+'" selected>'+data[0].data[i].option+'</option>'
+                    html = ` <select name="periodo" id="id_periodo">
+                                ${option}
+                            </select>`
+                    $('.periodo').append(html)
+                    $('.periodo').removeClass('hide');
+                    dias = data[0].data[i].dias
+
+                }
+                $("#id_periodo").material_select();
+            }else{
+                $('.err').html(data[0].err)
+            }
+        },
+        error:function(err){
+            console.log(err)
+        }
+    })
+}
+
+
+</script>
+{% endblock %}

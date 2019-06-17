@@ -1,0 +1,50 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="row myrow">
+	<div class="col s12">
+		<div class="card-panel">
+			<h4 class="title">Editando Director</h4>
+			<div class="row">
+    			<form class="col s12" method="POST" autocomplete="off">
+    				{% csrf_token %}
+    				<div class="row">
+        				<div class="input-field col s12">
+          					<i class="material-icons prefix">account_circle</i>
+                    <input type="text" name="cedu_direc" 
+                    value="{{ver_director.cedu_direc.value}}">
+          					<label for="icon_prefix">Cedula</label>
+        				</div>
+            </div>
+            <div class="row">
+        				<div class="input-field col s6">
+          					<i class="material-icons prefix">account_circle</i>
+                    <input type="text" name="nomb_direc" value="{{ ver_director.nomb_direc.value }}">
+          					<label for="icon_telephone">Nombre</label>
+        				</div>
+        				<div class="input-field col s6">
+          					<i class="material-icons prefix">account_circle</i>
+                     <input type="text" name="apel_direc" value="{{ ver_director.apel_direc.value }}">
+          					<label for="icon_prefix">Apellido</label>
+        				</div>
+            </div>
+            <div class="row">
+        				<div class="input-field col s12">
+          					<i class="material-icons prefix">account_circle</i>
+                    <input type="text" name="carg_direc" value="{{ ver_director.carg_direc.value}}"  onclick="cargo1(this)" readonly />
+          					<label for="icon_telephone">Cargos</label>
+        				</div>
+      			</div>
+      				<button class="btn waves-effect waves-light right" type="submit">Guardar
+    					<i class="material-icons right">send</i>
+  					</button>
+  					<a href="{% url 'Trabaexpe:ListDirectores' %}" class="btn waves-effect waves-light right">Volver</a>
+    			</form>	
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

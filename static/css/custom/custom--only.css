@@ -1,0 +1,107 @@
+/*----------------------------------------
+    Mensaje
+------------------------------------------*/
+.col--tm{
+  	margin-left: 296px !important;
+	overflow:hidden;
+	padding:20px;
+	background-color:#6BD5F1;
+	border:1px solid #afcde3;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	}
+.Titulo{
+	font-family: inherit;
+    font-size: 3em;
+    line-height: inherit;
+    margin-bottom: 4%;
+}
+.Subtitulo{
+	font-family: inherit;
+    font-size: 2em;
+    line-height: inherit;
+	margin-bottom: 4%;
+	font-weight: 500;
+}
+.icon--men{
+	    margin-left: 22rem;
+    	font-size: 10rem;
+}
+.btn--men{
+	margin-right: 20.7em;
+}
+.col--onl{
+	margin-left: 11% !important;
+}
+.men--card{
+	margin-top: 5em;
+	margin-right: -300px;
+	height: 22rem;
+}
+.men-body{
+	background: linear-gradient(45deg, #ffffff 0%, #f1f1f1 100%);
+}
+
+/*----------------------------------------
+    Cajas con contenido de color
+------------------------------------------*/
+.box-blue,
+.box-gray,
+.box-green,
+.box-grey,
+.box-red,
+.box-yellow {
+	margin:0 0 25px;
+	overflow:hidden;
+	padding:20px;
+	-webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.box-blue {
+	background-color:#d8ecf7;
+	border:1px solid #afcde3;
+}
+
+.box-gray {
+	background-color:#e2e2e2;
+	border:1px solid #bdbdbd;
+}
+
+.box-green {
+	background-color:#d9edc2;
+	border:1px solid #b2ce96;
+}
+
+.box-grey {
+	background-color:#F5F5F5;
+	border:1px solid #DDDDDD;
+}
+
+.box-red {
+	background-color:#f9dbdb;
+	border:1px solid #e9b3b3;
+}
+
+.box-yellow {
+	background-color:#fef5c4;
+	border:1px solid #fadf98;
+}
+.btnEyes--Red{
+	background-color: #dd1a24;
+	}
+	.btnEyes--Red:hover, .btnEyes--Red:focus{
+		background-color: #dd1a24e8;
+	}
+.btnApp--margin{
+	margin:0.1rem;
+}
+.contGrad--blue{
+	background: linear-gradient(45deg, #0d4978 0%, #0d4978 100%);
+}
+.contGrad--bluesolid{
+	background: linear-gradient(45deg, rgba(0, 0, 0, 0.42) 0%, #0d4978 100%);
+}
+.message--red{
+	background-color: #882d46;
+}

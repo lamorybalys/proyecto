@@ -1,0 +1,61 @@
+{% extends '../../base/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'lib/data-table-deparweb/css/dataTables.bootstrap4.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'lib/data-table-deparweb/css/bootstrap.css' %}">
+{% block content %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container">
+        <div class="section">
+            <div>
+                {% if user.is_trabajador %}
+                    <h1 class="title text-capitalize">Mi Jubilación</h1>
+
+                {% else %}
+                    <h1 class="title text-capitalize">Listado de Jubilados</h1>
+                {% endif %}
+                <div class="row">
+                        {% if not user.is_trabajador %}
+                        <a class="btn waves-effect right" href="{% url 'reportes:jubilacion'%}">Imprimir</a>
+                        {% endif %}
+                    <div class="col s12 m8 l12">
+                        <table id="example" class="table">
+                            <thead style="background-color: #0d4978;
+                            color: antiquewhite;">
+                            <tr>
+                                <th>Codigo</th>
+                                <th>Expediente</th>
+                                <th>Fecha de solicitud</th>
+                                <th>Estatus</th>
+                                <th>opciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for jubilar in jubi %}
+                                <tr>
+                                <td>{{ jubilar.cod_jubila }}</td>
+                                <td>{{ jubilar.expediente }}</td>
+                                <td>{{ jubilar.fecha_s.date }}</td>
+                                <td>{{ jubilar.estatus }}</td>
+
+                                <td>
+                                    <a href="{% url 'Constancias:verJubi' pk=jubilar.id %}" class="btn waves-effect btnEyes--Red"><i class="material-icons">remove_red_eye</i></a>
+                                </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <hr>
+
+</div> <!-- /container -->
+<script src="{% static 'lib/data-table-deparweb/js/jquery-3.3.1.js' %}"></script>
+<script src="{% static 'lib/data-table-deparweb/js/jquery.dataTables.min.js' %}"></script>
+
+{% endblock content %}

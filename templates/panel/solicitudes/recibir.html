@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+<link href="{% static 'css/icon.css' %}" type="text/css" rel="stylesheet">
+<link href="{% static 'css/custom/custom--only.css' %}" type="text/css" rel="stylesheet">
+<body class="men-body">  
+
+	<div id="error-page">
+		<div class="row">
+		  	<div class="col s12">
+				<div class="browser-window">
+			  		<div class="top-bar">
+						<div class="circles">
+							<div id="close-circle" class="circle"></div>
+							<div id="minimize-circle" class="circle"></div>
+							<div id="maximize-circle" class="circle"></div>
+							</div>
+						</div>
+			  			<div class="content">
+				  			<div class="card" style="background: linear-gradient(45deg, #ffffff 0%, #d0d0d0 100%);">
+								<div class="row">
+									<div id="site-layout-example-top" class="col s12" style="background-color: #dd1b24;">
+										<p class="flat-text-logo center white-text caption-uppercase "><font style="vertical-align: inherit;">Desea Solicitar Sus Vacaciones</font></p>
+
+									</div>
+									<div id="site-layout-example-right" class="col s12 m12 l12" style="background-color: #0d4978;">
+										<div class="row center">
+										<h1 class="text-long-shadow col s12 "><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><i class="material-icons" style="font-size: 10rem;color: #fff;">assignment_turned_in</i></font></font></h1>
+										</div>
+										<div class="row center">
+                                            <p class="center s12">
+                                                
+                                                <a href="#" class="btn waves-effect waves-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Si<i class="material-icons">done_all</i></font></font></a>
+                                                
+                                                <a href="../../trabaexpe/admin/" class="btn waves-effect waves-light"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cancelar<i class="material-icons">done_all</i></font></font></a>
+                                                
+                                                </p><p>
+                                            </p>
+										</div>
+									</div>
+								</div>
+				  			</div>
+				
+			  			</div>
+					</div>
+		  		</div>
+			</div>
+		</div>
+	</div>
+</body>
+{% endblock %}

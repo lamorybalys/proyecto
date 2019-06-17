@@ -1,0 +1,231 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<style type="text/css">
+  .input-error{
+    border-bottom:1px solid red !important;
+  }
+</style>
+<!-- Main content -->
+<style>
+.picker__select--month.browser-default {
+    float: right;
+    margin-right: 2em;
+}
+</style>
+<div class="row">
+	<div class="col s12">
+		<div class="card-panel">
+			<h4 class="title text-capitalize">nuevo Trabajador</h4>
+      {% if messages %}
+          {% for message in messages %}
+        <div id="card-alert" class="card light-blue">
+          <div class="card-content white-text">
+            <p><i class="material-icons prefix">check</i>{{message}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+			<div class="row">
+    			<form class="col s12" id="form" role="form" method="POST" name="formulario">
+              {% csrf_token %}
+               <!-- {{ traba.as_p }}  -->
+              <div class="row">
+                <div class="input-field col s12 ">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input type="text" name="cedu_trab" id="id_cedula" class="number" minlength="7" maxlength="8">
+                    <label for="cedu_trab">Cedula</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input type="text" name="nomb_trab">
+                    <label for="nomb_trab">Nombre</label>
+                </div>
+        				<div class="input-field col s6">
+          					<i class="material-icons prefix">account_circle</i>
+          					<input type="text" name="ape_trab">
+          					<label for="ape_trab">Apellido</label>
+        				</div>
+              </div>
+              <div class="row">
+        				<div class="input-field col s6">
+          					<i class="material-icons prefix">contact_phone</i>
+                    <select name="cod_tele">
+                      {% for x,y in traba.fields.cod_tele.choices %}
+                      <option value="{{ x }}"{% if traba.fields.cod_tele.value == x %} selected{% endif %}>{{ y }}</option>
+                      {% endfor %}
+                    </select>
+          					<label for="icon_prefix">Codigo de telefono</label>
+        				</div>
+        				<div class="input-field col s6">
+          					<i class="material-icons prefix">local_phone</i>
+                    <input type="text" class="number" minlength="7" maxlength="7" name="telefono">
+          					<label for="telefono">Telefono</label>
+        				</div>
+      				</div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">wc</i>
+                    <select name="sexo">
+                      {% for x,y in traba.fields.sexo.choices %}
+                      <option value="{{ x }}"{% if traba.fields.sexo.value == x %} selected{% endif %}>{{ y }}</option>
+                      {% endfor %}
+                    </select>
+                    <label for="icon_prefix">Sexo</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">receipt</i>
+                    <input type="text" class="number" maxlength="15" name="num_ric">
+                    <label for="num_ric">Numero de Ric</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">today</i>
+                    <input name="fech_ing_pub" type="date" class="datepicker2" requerid aria-required="true">
+                     <label for="fech_ing_pub" class="active">Fecha de Ingreso Publicado</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">today</i>
+                    <input name="fech_ing_inst" type="date" class="datepicker2" requerid aria-required="true">
+                    <label for="fech_ing_inst" class="active">Fecha de Ingreso Institucional</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">receipt</i>
+                    <input type="text" class="number" maxlength="15" name="cod_rac">
+                     <label for="cod_rac">Codigo de Rac</label>
+                </div>
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">today</i>
+                  <input name="fech_naci" type="date" class="datepicker2" requerid aria-required="true">
+                  <label for="fech_naci" class="active">Fecha de nacimiento</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">work</i>
+                    <select name="cargos" id="cargos">
+                      {% for x,y in traba.fields.cargos.choices %}
+                      <option value="{{ x }}"{% if traba.fields.cargos.value == x %} selected{% endif %}>{{ y }}</option>
+                      {% endfor %}
+                    </select>
+                    <label for="icon_telephone">Tipo</label>
+                </div>
+              
+                <div class="input-field col s6 hide" id="empleado">
+                    <i class="material-icons prefix">work</i>
+                    {{traba.empleados}}
+                    <label for="icon_telephone">Cargos</label>
+                </div>
+                <div class="input-field col s6 hide" id="obrero">
+                    <i class="material-icons prefix">work</i>
+                    {{traba.obreros}}
+                    <label for="icon_telephone">Cargos</label>
+                </div>
+
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">update</i>
+                      <select name="estat_traba">
+                      {% for x,y in traba.fields.estat_traba.choices %}
+                      <option value="{{ x }}"{% if traba.fields.estat_traba.value == x %} selected{% endif %}>{{ y }}</option>
+                      {% endfor %}
+                    </select>
+                    <label for="icon_telephone">Estatus</label>
+                </div>
+              </div>
+              {% for error in form.non_field_errors %}
+						{{error}}
+						{% endfor %}
+              <button class="btn waves-effect waves-light right" type="submit" name="action" id="save">Guardar
+                <i class="material-icons right">send</i>
+              </button>
+              <a href="/trabaexpe/admin/" class="btn waves-effect waves-light right">Volver</a>
+              
+            </div>
+    			</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="{% static 'lib/data-table-deparweb/js/jquery-3.3.1.js' %}"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+
+      $('#cargos').on('change',function(){
+        var valor = String($(this).val()).trim()
+        var medico  = String('Medico (a)').trim()
+        var empleado  = String('Empleado (a)').trim()
+        var obrero  = String('Obrero (a)').trim()
+        if(valor == medico){
+          $('#obrero').addClass('hide');
+          $('#id_obreros').val('')
+          $('#id_obreros').removeAttr('required')
+
+          $('#empleado').addClass('hide');
+          $('#id_empleados').val('')
+          $('#id_empleados').removeAttr('required')
+
+        }
+        else if(valor == empleado){
+          $('#empleado').removeClass('hide');
+          $('#id_empleados').val('')
+          $('#id_empleados').attr('required','required')
+
+         
+
+          $('#obrero').addClass('hide');
+          $('#id_obreros').val('')
+          $('#id_obreros').removeAttr('required')
+
+
+        }
+        else if(valor == obrero){
+          $('#obrero').removeClass('hide');
+          $('#id_obreros').val('')
+          $('#id_obreros').attr('required','required')
+
+         
+          $('#empleado').addClass('hide');
+          $('#id_empleados').val('')
+          $('#id_empleados').removeAttr('required')
+        }
+        else{
+          
+        
+          $('#obrero').addClass('hide');
+          $('#id_obreros').val('')
+          $('#id_obreros').removeAttr('required')
+
+          $('#empleado').addClass('hide');
+          $('#id_empleados').val('')
+          $('#id_empleados').removeAttr('required')
+        }
+       
+      })
+      $('.datepicke1r').pickadate({
+        
+        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthsShort: ["Eneno", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciciembre"],
+        weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+        weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+        weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"],
+        cancel: 'Cancelar',
+        clear: 'Limpiar',
+        today:'Hoy',
+        done: 'Ok',
+        selectYears: true,
+
+        format:'dd/mm/yyyy',
+  });
+
+    });
+</script>
+{% endblock %}

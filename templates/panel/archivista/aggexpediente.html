@@ -1,0 +1,158 @@
+{% extends '../../base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="title text-capitalize">Nuevo expediente</h4>
+            {% if messages %}
+              {% for message in messages %}
+            <div id="card-alert" class="card light-blue">
+              <div class="card-content white-text">
+                <p><i class="material-icons prefix">check</i>{{message}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+            <div class="row">
+                <form class="col s12" id="formValidate" role="form"
+                    method="POST" name="formulario">
+                    {% csrf_token %}
+                    <!-- {{ expe.as_p }} -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">work</i>
+                            <select name="trabajador">
+                                {% for x,y in expe.fields.trabajador.choices %}
+                                <option value="{{ x }}"{% if expe.fields.trabajador.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="trabajador">Trabajador</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">perm_identity</i>
+                            <select name="estado_civil" id="estado_civil" onchange="habilitar(this)">
+                                {% for x,y in expe.fields.estado_civil.choices %}
+                                <option value="{{ x }}"{% if expe.fields.estado_civil.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="estado_civil">Estado civil</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="titulo" type="checkbox"
+                                aria-required="true" id="titulo" />
+                            <label for="titulo">Titulo</label>
+                        </div>
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="cop_cedula" type="checkbox"
+                                aria-required="true" id="cop_cedula" />
+                            <label for="cop_cedula">Copia de cedula</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="parti_nacimiento" type="checkbox"
+                                aria-required="true" id="parti_nacimiento" />
+                            <label for="parti_nacimiento">Partida de nacimiento</label>
+                        </div>
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="regi_cen_per" type="checkbox"
+                                aria-required="true" id="regi_cen_per" />
+                            <label for="regi_cen_per">Registro del censo
+                                personal</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="sinte_curri" type="checkbox"
+                                aria-required="true" id="sinte_curri" />
+                            <label for="sinte_curri">Sintesis curricular</label>
+                        </div>
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="fideicomiso" type="checkbox"
+                                aria-required="true" id="fideicomiso" />
+                            <label for="fideicomiso">Fideicomiso</label>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="recibo_pago" type="checkbox"
+                                aria-required="true" id="recibo_pago" />
+                            <label for="recibo_pago">Recibo de pago</label>
+                        </div>
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="cart_cunc" class="browser-default" type="checkbox"
+                                aria-required="true" id="cart_cunc" />
+                            <label for="cart_cunc">Carta de concubinato</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="act_matr" type="checkbox"
+                                aria-required="true" id="act_matr" />
+                            <label for="act_matr">Acta de matrimonio</label>
+                        </div>
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="act_difu" type="checkbox"
+                                aria-required="true" id="act_difu" />
+                            <label for="act_difu">Acta de difusion</label>
+                        </div>
+                    </div>
+                    <br>
+                    
+                    <div class="row">
+                        
+                        <div class="input-field col s12 hide">
+                            <i class="material-icons prefix">supervisor_account</i>
+                            {% for x,y in expe.fields.directores.choices %}
+                            <input type="text" value="{{ x }}" name="directores">
+                            {% endfor %}
+                            <label for="directores">Director</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <button class="btn waves-effect waves-light
+                            right" type="submit" name="action"
+                            onclick="click()">Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                        <a href="/trabaexpe/admin/" class="btn waves-effect
+                            waves-light right">Volver</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript"> 
+    $(document).ready(function(){
+    $("#estado_civil").change(function(){
+    var valor= $("#estado_civil").val();
+    if (valor==4){
+    $("#ckeck").ckeckboxmenu( disable );
+
+    }else{
+    $("#ckeck").ckeckboxmenu( enable );
+    };
+    });
+    });
+    </script> 
+{% endblock %}

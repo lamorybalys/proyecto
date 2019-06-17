@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<style type="text/css">
+  .input-error{
+    border-bottom:1px solid red !important;
+  }
+</style>
+<!-- Main content -->
+<div class="row">
+	<div class="col s12">
+		<div class="card-panel">
+			<h4 class="title text-capitalize">Cargar Sueldos</h4>
+      {% if messages %}
+          {% for message in messages %}
+        <div id="card-alert" class="card light-blue">
+          <div class="card-content white-text">
+            <p><i class="material-icons prefix">check</i>{{message}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+			<div class="row">
+    			<form class="col s12" id="form" role="form" method="POST" name="formulario" enctype="multipart/form-data">
+              {% csrf_token %}
+               <!-- {{ traba.as_p }}  -->
+              <div class="row">
+                  <div class="input-field col s12 ">
+                      <div class=" input-field">
+                      <select name="tipo" id="tipo" required>
+                          <option value="" >Seleccione el tipo</option>
+                          <option value="Empleados" >Empleados</option>
+                          <option value="Medicos">Medicos</option>
+                          <option value="Obreros">Obreros</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="input-field col s12 ">
+                      <div class="file-field input-field">
+                        <div class="btn">
+                          <span>Sueldos</span>
+                          <input type="file" name="excel_file" accept=".xlsx">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                        <p style="color:red;">Nota: Vefique que el archivo a cargar coincida con el tipo de trabajador.</p>
+                  </div>
+                </div>
+              </div>
+              
+              <button class="btn waves-effect waves-light right" type="submit" name="action" id="save">Guardar
+                <i class="material-icons right">send</i>
+              </button>
+              <a href="/trabaexpe/admin/" class="btn waves-effect waves-light right">Volver</a>
+              
+            </div>
+    			</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

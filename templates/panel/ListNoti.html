@@ -1,0 +1,72 @@
+{% extends '../base/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'lib/data-table-deparweb/css/dataTables.bootstrap4.min.css' %}">
+
+<link rel="stylesheet" href="{% static 'lib/data-table-deparweb/css/bootstrap.css' %}">
+{% block content %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="container">
+        <div class="section">
+            <div>
+                <h1 class="title text-capitalize">Listado de Notificaciones</h1>
+                <div class="row">
+                    <div class="col s12 m8 l12">
+                        <table id="example" class="table">
+                            <thead style="background-color: #0d4978;
+                            color: antiquewhite;">
+                            <tr>
+                                <th>Fecha</th>
+								<th>Contenido</th>
+								<th>estatus</th>
+								<th>opciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+							{% for noti in notifications %}
+                                <tr>
+									<td>{{noti.fecha.date}}</td>
+									<td>{{noti.contenido}}</td>
+									<td>
+                                        {% if noti.estatus %}
+                                        Leida
+                                        {% else %}
+                                        No leida
+                                        {% endif %}</td>
+									<td>
+										<a onclick="redi('{{noti.id}}','{{noti.url}}')" class="btn waves-effect btnEyes--Red">Ver</a>
+									</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <hr>
+
+</div> <!-- /container -->
+<script src="{% static 'lib/data-table-deparweb/js/jquery-3.3.1.js' %}"></script>
+<script src="{% static 'lib/data-table-deparweb/js/jquery.dataTables.min.js' %}"></script>
+
+ <script>
+ function redi(id,url){
+		$.ajax({
+			url: "{% url 'Trabaexpe:updNoti'%}",
+			type: "POST",
+			data: {"id":id,"csrfmiddlewaretoken":"{{ csrf_token }}"},
+			dataType: 'json',
+			success: function (data) {
+				if (data.valid){
+					window.location.href = url;
+				}else{
+					alert('no se puede actualizar la notificacion');
+				}
+			}
+		});
+	}
+ </script>      
+{% endblock content %}

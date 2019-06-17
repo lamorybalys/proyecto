@@ -1,0 +1,178 @@
+{% load staticfiles %}
+{% block content %}
+{% if user.is_archivista %}
+<li class="user-details cyan darken-2">
+  <div class="row">
+    <div class="col col s4 m4 l4">
+      <img src="{% static 'images/avatar/admin1.jpg'%}" alt="" class="circle
+        responsive-img valign profile-image cyan">
+    </div>
+    <a class="btn-flat dropdown-button waves-effect waves-light white-text
+      profile-btn" href="#" data-activates="profile-dropdown-nav"><p>Archivista</p><i
+        class="mdi-navigation-arrow-drop-down right"></i></a>
+
+  </div>
+</li>
+<ul class="collapsible">
+  <li class="no-padding">
+    <ul class="collapsible" data-collapsible="accordion">
+      <li class="bold">
+        <a href="/trabaexpe/admin/" class="waves-effect waves-cyan">
+          <i class="material-icons">pie_chart_outlined</i>
+          <span class="nav-text">Inicio</span>
+        </a>
+      </li>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">accessibility</i>
+          Trabajador
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Trabaexpe:Aggm' %}">
+            Agregar
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Trabaexpe:Listworker' %}">
+            Listados
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">folder</i>
+          Expediente
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Trabaexpe:Aggexpe' %}">
+            Agregar expediente
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Trabaexpe:Listexpe' %}">
+            listado de expedientes
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">import_contacts</i>
+          Evaluacion
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Aggeva' %}">
+            Agregar
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Listeva' %}">
+            listado
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">beach_access</i>
+          Vacaciones 
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Aggvacaarc' %}">
+            Agregar Vacaciones
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Aggperiodo' %}">
+            Agregar Periodo
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Listvaca' %}">
+            Listados
+          </a>
+        </div>
+      </li>
+      
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">all_inclusive</i>
+          Cronologico
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Aggcrono' %}">
+            Agregar
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Listcrono' %}">
+            Listados
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">archive</i>
+          Seguro Social
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Aggseguro' %}">
+            Agregar
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Listseg' %}">
+            Listados
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">beenhere</i>
+          Jubilacion
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Aggjubilacion' %}">
+            Agregar
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Listjubi' %}">
+            Listados
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">near_me</i>
+          Descanso Trimestral
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Aggdes_trim' %}">
+            Agregar
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Constancias:Listdes_trim' %}">
+            Listado 
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">attach_money</i>
+          Sueldo
+        </div>
+        <div class="collapsible-body">
+          <a href="{% url 'Trabaexpe:sueldo' %}">
+            Cargar sueldo
+          </a>
+        </div>
+        <div class="collapsible-body">
+          <a href="#}">
+            Listados
+          </a>
+        </div>
+      </li>
+    </ul>
+</ul>
+{% endif %}
+{% endblock %}

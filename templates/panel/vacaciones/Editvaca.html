@@ -1,0 +1,112 @@
+{% extends '../../base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="title">Nueva Vacaciones</h4>
+            <div class="row">
+                <form class="col s12"
+                    method="POST">
+                    {% csrf_token %}
+                    <!-- {{ edit_vaca.as_p }} -->
+                    <br>
+                    
+                    <div class="row">
+                        <div class="input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input type="text" value="{{ edit_vaca.user.expediente.value}}"  onclick="cargo1(this)" readonly />
+
+                                <label for="expediente">expediente</label>
+                        </div>
+                    </div>
+                      
+                      <div class="row">
+                            <div class="input-field col s12">
+                                  <i class="material-icons prefix">account_circle</i>
+                                  <input type="text"  value="{{ edit_vaca.tipo_vaca.value}}"  onclick="cargo1(this)" readonly />
+                                  <label for="icon_telephone">Tipo de vacaciones</label>
+                            </div>
+                      </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">power_input</i>
+                            <input type="number" id="per_dis_des" name="per_vaca_dis_des" requerid aria-required="true" value="{{ edit_vaca.per_vaca_dis_des.value }}" onclick="cargo1(this)" readonly />
+                            <label for="per_vaca_dis_des">Periodo a disfrutar desde:</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">power_input</i>
+                            <input type="number" id="per_dis_has" name="per_vaca_dis_has" requerid aria-required="true" value="{{ edit_vaca.per_vaca_dis_has.value }}">
+                            <label for="per_vaca_dis_has">Periodo a disfrutar hasta:</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">done</i>
+                            <input type="number" id="dias_habi" name="dias_hab"  requerid aria-required="true" value="{{ edit_vaca.dias_hab.value }}">
+                            <label for="dias_hab">Dias habiles</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">date_range</i>
+                            <input type="date" id="fech_inic" name="fech_inic" class="datepicker" requerid aria-required="true" value="{{ edit_vaca.fech_inic.value }}" onclick="cargo1(this)" readonly />
+                            <label for="fech_inic">Fecha de inicio</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">date_range</i>
+                            <input type="date" id="fech_culm" name="fech_culm" class="datepicker" requerid aria-required="true" value="{{ edit_vaca.fech_culm.value }}" onclick="cargo1(this)" readonly />
+                            <label for="fech_culm">Fecha de culminacion</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <i class="material-icons prefix">event</i>
+                            <input type="date" id="fech_reint" name="fech_reint" class="datepicker" requerid aria-required="true" value="{{ edit_vaca.fech_reint.value }}">
+                            <label for="fech_reint">Fecha de reintegro</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">description</i>
+                            <input type="text" class="materialize-textarea" id="obser" name="observacion" >
+                            <label for="observacion" class="">Observacion</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">chrome_reader_mode</i>
+                            <input type="text" id="coor" name="coordinacion" class="materialize-textarea">
+                            <label for="coordinacion" class="">Coordinacion</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">assignment</i>
+                            <input type="text" id="direc_linea" name="direc_linea" class="materialize-textarea">
+                            <label for="direc_linea" class="">Direccion de Linea</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">public</i>
+                            <input type="text" id="direc_gener" name="direc_gener" class="materialize-textarea" >
+                            <label for="direc_gener" class="">Direccion general</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">phone_forwarded</i>
+                            <input type="text" id="exten_tele" name="exten_tele" class="materialize-textarea" >
+                            <label for="exten_tele" class="">Extension telefonica</label>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row">
+                        <button class="btn waves-effect waves-light
+                            right" type="submit" >Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                        <a href="#" class="btn waves-effect
+                            waves-light right">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

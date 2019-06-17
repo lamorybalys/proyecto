@@ -1,0 +1,255 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html class="full-height" lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hospital Miguel Oraá</title>
+    <meta name="description" content="Material design landing page template built by TemplateFlip.com"/>
+    <link rel="icon" href="{% static 'images/mini--logo.png' %}" sizes="32x32">
+    <link rel="stylesheet" href="{% static 'font-awesome.min.css' %}">
+    <link href="{% static 'landing/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'landing/css/mdb.min.css' %}" rel="stylesheet">
+    <link href="{% static 'landing/styles/main.css' %}" rel="stylesheet">
+    <link href="{% static 'estilos.css' %}" rel="stylesheet">
+    <!-- ESLIDER -->
+    <link rel="stylesheet" type="text/css" href="{% static 'landing/css/demo.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'landing/css/elastislide.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'landing/css/custom.css' %}" />
+    <script src="{% static 'landing/js/modernizr.custom.17475.js' %}"></script>
+
+<style type="text/css">
+
+    </style>
+  </head>
+  <body id="top">
+    <header>
+      <!-- Navbar-->
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" id="navbar">
+        <div class="container"><a class="navbar-brand" href="/.."><strong><img class="img-fluid flexbox xLeft logo-la"  src="{% static 'landing/img/logo.png' %}" alt="project image"/></strong></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a class="nav-link active" href="#about">Galeria</a></li>
+              <li class="nav-item"><a class="nav-link" href="#projects">Mision, Vision y Funciones</a></li>
+              <li class="nav-item"><a class="nav-link" href="#team">Ubicacion</a></li>
+              
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Intro Section-->
+      <section class="view hm-gradient" id="intro">
+        <div class="full-bg-img d-flex align-items-center">
+          <div class="container">
+            <div class="row no-gutters">
+              <div class="col-md-10 col-lg-6 text-center text-md-left margins">
+                <div class="white-text">
+                  <div class="wow fadeInLeft" data-wow-delay="0.3s">
+                    <h1 class="h1-responsive font-bold mt-sm-5">Bienvenido.</h1>
+                    <div class="h6">
+                      Hospital General Dr. Miguel Oraá.
+                    </div>
+                  </div><br>
+                  <div class="wow fadeInLeft" data-wow-delay="0.3s"><a class="btn btn-white dark-grey-text font-bold ml-0" href="{% url 'Createuser:login' %}" ><i class="fa fa-play mr-1"></i> Iniciar Sesion</a></div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </header>
+    <div id="content">
+<section class="row no-gutters" id="features">
+  <div class="col-lg-3 col-md-6 col-sm-12 deep-purple lighten-1 text-white">
+    <div class="p-5 text-center wow zoomIn" data-wow-delay=".1s"><i class="fa fa-line-chart fa-2x"></i>
+      <div class="h5 mt-3">Objetivos Específicos</div>
+      <p class="mt-5">•Establecer una modificación especial en el sistema de salud  y administración del centro hospitalario, para que enfoque las  medicinas  con la plena participación de las máximas autoridades en la planificación e implementados en el programa del ejecutado por dicho hospital.</p>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 purple lighten-1 text-white">
+    <div class="p-5 text-center wow zoomIn" data-wow-delay=".3s"><i class="fa fa-industry fa-2x"></i>
+      <div class="h5 mt-3">Calidad en la Atención Médica</div>
+      <p class="mt-5">•La calidad está recibiendo una creciente atención en todo el mundo y se debe a que está presente en lo esencial de toda actividad humana.</p>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 teal lighten-1 text-white">
+    <div class="p-5 text-center wow zoomIn" data-wow-delay=".5s"><i class="fa fa-users fa-2x"></i>
+      <div class="h5 mt-3"> Objetivo General</div>
+      <p class="mt-5">•Prestar atención médica sin fines de lucros a la comunidad y a nivel nacional para así obtener una salud fundamental gracias a los profesionales de la medicina.</p>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6 light-blue lighten-1 text-white">
+    <div class="p-5 text-center wow zoomIn" data-wow-delay=".7s"><i class="fa fa-bullhorn fa-2x"></i>
+      <div class="h5 mt-3"> Actividad a que se Dedica</div>
+      <p class="mt-5">•Prestar servicios de  atención y asistencia médica sin fines de lucros a la colectividad en materia de salud.</p>
+    </div>
+  </div>
+</section>
+<section class="text-center py-5 grey lighten-4" id="about">
+  <div class="container">
+    <div class="wow fadeIn">
+      <h2 class="h1 pt-5 pb-3">Galeria</h2>
+      <p class="px-5 mb-5 pb-3 lead blue-grey-text">
+        "EL MUNDO NECESITA GENTE QUE AME LO QUE HACE"
+      </p>
+    </div>
+    
+    <div class="slider">
+      <ul>
+        <li >
+          <img src="{% static 'landing/img/diabetes.jpg' %}" alt="">
+        </li>
+        <li>
+          <img src="{% static 'landing/img/medicine-37101_640.png' %}" alt="" >
+        </li>
+        <li>
+          <img src="{% static 'landing/img/medicos1.jpg' %}" alt="">
+        </li>
+        <li>
+          <img src="{% static 'landing/img/sala.jpg' %}" alt="">
+        </li>
+        <li>
+          <img src="{% static 'landing/img/hospital.png' %}" alt="">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="py-5" id="projects">
+  <div class="container">
+    <div class="wow fadeIn">
+      <h2 class="text-center h1 my-4">El Hospital Miguel Oraá</h2>
+      <p class="px-5 mb-5 pb-3 lead blue-grey-text text-center">
+        Existen profesionales que actúen sobre la salud social para la comunidad y a nivel nacional.
+      </p>
+    </div>
+    <div class="row wow fadeInLeft" data-wow-delay=".3s">
+      <div class="col-lg-3 col-xl-4 pr-lg-5 pb-5"><img class="img-fluid rounded z-depth-2" src="{% static 'landing/img/medicina.png' %}" alt="project image"/></div>
+      <div class="col-lg-6 col-xl-7 pl-lg-5 pb-4">
+        <div class="row mb-3">
+          <div class="col-1 mr-1"><i class="fa fa-book fa-2x cyan-text"></i></div>
+          <div class="col-10">
+            <h5 class="font-bold">Mision</h5>
+            <p class="grey-text">
+              Para nosotros el pueblo de Guanare, y para el personal obrero de enfermería, médico, paramédico, empleado gerencial y directivo del  Hospital Dr. Miguel Oraa será un imperativo  ético y político  dedicar nuestros mayores esfuerzos a proveer salud con dignidad, equidad y justicia social a nuestra gente. 
+            </p>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-1 mr-1"><i class="fa fa-code fa-2x red-text"></i></div>
+          <div class="col-10">
+            <h5 class="font-bold">Vision</h5>
+            <p class="grey-text">   
+                Es una  organización, que aspira contribuir con la integración de los servicios tanto  en el  ámbito  local  como  Estadal y nacional,  con la finalidad  de prestar un servicio de   salud a las  personas o pacientes,  que requieran de la  atención  médica, para  ello cuenta con personal  preparado  para  realizar  cualquier  eventualidad que vaya en función del logro  de las objetivos y metas  establecidas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <div class="row pt-5 wow fadeInRight" data-wow-delay=".3s">
+      <div class="col-lg-6 col-xl-7 mb-3">
+        <div class="row mb-3">
+          <div class="col-1 mr-1"><i class="fa fa-bar-chart fa-2x indigo-text"></i></div>
+          <div class="col-10">
+            <h5 class="font-bold">FUNCION DEL  HOSPITAL GENERAL MIGUEL ORAA</h5>
+            <p class="grey-text">
+              El comité estimó que la integración de la medicina preventiva y de la medicina curativa en la práctica médica y administrativa debía haberse llevado a cabo hace mucho tiempo y recomendó que el hospital como instrumento destinado a mejorar la salud y el bienestar del hombre, desempeñe plenamente la función que le corresponde adaptándose en todo momento a las nuevas circunstancias y necesidades.
+            </p>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-1 mr-1"><i class="fa fa-music fa-2x pink-text"></i></div>
+          <div class="col-10">
+            <h5 class="font-bold">SERVICIOS Y/O PRODUCTOS QUE GENERA LA INSTITUCIÓN</h5>
+            <p class="grey-text">
+              Prestar atención médica sin fines de lucros a la comunidad y a nivel nacional para así obtener una salud fundamental gracias a los profesionales de la medicina. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-xl-5 mb-3"><img class="img-fluid rounded z-depth-2" src="{% static 'landing/img/medicos.jpg' %}" alt="project image"/></div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" id="team">
+  <div class="container">
+    <div class="wow fadeIn">
+     <div class="col-10">
+            <h3 style="margin-top: center;" class="font-bold">Ubicación del Hospital Miguel Oraá</h3>
+      
+      </div>
+    </div>
+    <div class="container">
+      <div class="wow fadeIn">
+         <iframe style="width: 100%; margin-top: center;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3940.131104421272!2d-69.734784!3d9.051804!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e7cf69e9fbd5d4f%3A0x295255319a3e7247!2sHospital+Dr.+Miguel+Oraa!5e0!3m2!1ses!2sve!4v1529453830760" width="600" height="450" frameborder="0" style="border:2" allowfullscreen></iframe>
+        
+      </div>
+    </div>
+    
+    
+  </div>
+</section>
+    <footer class="page-footer indigo darken-2 center-on-small-only pt-0 mt-0">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="mb-5 flex-center"><a class="px-3"><i class="fa fa-facebook fa-lg white-text"></i></a><a class="px-3"><i class="fa fa-twitter fa-lg white-text"></i></a><a class="px-3"><i class="fa fa-google-plus fa-lg white-text"></i></a><a class="px-3"><i class="fa fa-linkedin fa-lg white-text"></i></a></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container-fluid">
+          <p>&copy; <a href="/"> - Programadores:-</a>Gissell Viña, Yorbalys Almao y Edixon Diaz <a href="/" target="_blank"></a></p>
+        </div>
+      </div>
+    </footer>
+    <script type="text/javascript" src="{% static 'landing/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'landing/js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'landing/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'landing/js/mdb.min.js' %}"></script>
+    <!-- ESLIDER -->
+    <script type="text/javascript" src="{% static 'landing/js/jquerypp.custom.js' %}"></script>
+    <script type="text/javascript" src="{% static 'landing/js/jquery.elastislide.js' %}"></script>
+    <script>new WOW().init();</script>
+    <script type="text/javascript">
+      
+      // example how to integrate with a previewer
+
+      var current = 0,
+        $preview = $( '#preview' ),
+        $carouselEl = $( '#carousel' ),
+        $carouselItems = $carouselEl.children(),
+        carousel = $carouselEl.elastislide( {
+          current : current,
+          minItems : 4,
+          onClick : function( el, pos, evt ) {
+
+            changeImage( el, pos );
+            evt.preventDefault();
+
+          },
+          onReady : function() {
+
+            changeImage( $carouselItems.eq( current ), current );
+            
+          }
+        } );
+
+      function changeImage( el, pos ) {
+
+        $preview.attr( 'src', el.data( 'preview' ) );
+        $carouselItems.removeClass( 'current-img' );
+        el.addClass( 'current-img' );
+        carousel.setCurrent( pos );
+
+      }
+
+    </script>
+
+  </body>
+</html>

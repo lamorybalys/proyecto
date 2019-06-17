@@ -1,0 +1,97 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="title text-capitalize">Nueva jubilacion</h4>
+            {% if messages %}
+          {% for message in messages %}
+        <div id="card-alert" class="card light-blue">
+          <div class="card-content white-text">
+            <p><i class="material-icons prefix">check</i>{{message}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      {% endif %}
+            <div class="row">
+                {% if 55 > expediente.trabajador.edad  and expediente.trabajador.sexo == 'Femenino' or 60 > expediente.trabajador.edad and expediente.trabajador.sexo == 'Masculino' %}
+                    
+                <div class="row">
+                    <div class="col s12 center">
+                        <h4>No puede solicitar su jubilación ya que no cumple con la edad correspondiente para ello</h4>  
+                    </div>
+                    <div class="col s10 offset-s1">
+                        <h5>Sus años de servicio son: {{expediente.trabajador.antiguedad}}</h5>
+                    </div>
+                    <div class="center">
+                            <a href="/trabaexpe/admin/" class="btn waves-effect waves-light">Volver</a>
+
+                    </div>
+                </div>
+                {% else %}
+                {% if not jubilacion %}
+                <form class="col s12" id="formValidate" role="form"
+                    method="POST" name="formulario">
+                    {% csrf_token %}
+                    <!-- {{ crono.as_p }} -->
+                    
+                    <div class="row hide">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">folder</i>
+                            <input type="text" value="{{ expediente.id }}" name="expediente" readonly>
+                            
+                            <label for="expediente">Expediente</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h4 style="text-align: center">¿Desea solicitar su jubilación?</h4>
+                        <div class="col s10 offset-s1">
+                            <h5 class="left">
+                                Fecha de ingreso a la institución: {{expediente.trabajador.fech_ing_inst}}
+                                <br>
+                                <br>
+                                Años de antiguedad: {{expediente.trabajador.antiguedad}}
+                                <br>
+                                <br>
+                                Número de ric: {{expediente.trabajador.num_ric}}
+                                <br>
+                                <br>
+                                Código de rac: {{expediente.trabajador.cod_rac}}
+                            </h5>
+
+                        </div>
+                        
+                        
+                        
+                        
+                        <div class="col s12 center"> 
+                            <a href="/trabaexpe/admin/" class="btn waves-effect waves-light red">No</a>
+                            <button class="btn waves-effect waves-light
+                            ">Si</button>  
+                        </div>
+                    </div>
+                    
+                </form>
+                {% else %}
+                <div class="row">
+                        <div class="col s12 center">
+                            <h4>Ya posee una solicitud de jubilación pendiente.</h4>  
+                        </div>
+                        <div class="col s10 offset-s1">
+                            <h5>Código: {{jubilacion.cod_jubila}}</h5>
+                            <h5>Fecha de solicitud: {{jubilacion.fecha_s.date}}</h5>
+                        </div>
+                        <div class="center">
+                                <a href="/trabaexpe/admin/" class="btn waves-effect waves-light">Volver</a>
+    
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

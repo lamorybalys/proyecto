@@ -1,0 +1,256 @@
+{% extends '../../base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="flight-card" class="card">
+        <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+          <div class="card-title">
+            
+            <div class="col s2 m2 l2 center-align">
+                <h4 class="flight-card-title">Vacaciones N° {{vaca.cod_vaca}}</h4>
+                <i class="material-icons flight-icon" style="color: white;">beach_access</i>
+            </div>
+          </div>
+        </div>
+        <div class="white-text">
+          <div class="card-content" style="    background: #ffffffe6">
+            <div class="row">
+                <div class="row">
+                    {% if messages %}
+                      {% for message in messages %}
+                    <div id="card-alert" class="card light-blue">
+                      <div class="card-content white-text">
+                        <p><i class="material-icons prefix">check</i>{{message}}</p>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  {% endif %}
+                  <div class="col s12">
+                        {% if vaca.estatus != 'Pendiente' and request.user.is_trabajador %}
+                        <a href="{% url 'reportes:vacadetail' vaca.pk %}" target="__blank" class="btn waves-effect waves-light right">Imprimir</a>
+                        {% endif %}
+                  </div>   
+
+                    <div class="col s12 center">
+                        <h4 style="color: #0d4978;">Solicitud de vacaciones</h4>
+                        <br>    
+                            
+                    </div>   
+                </div>
+                <div class="col s4 m4 l4 center-align center-align ">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                  <h6 style="color: #0d4978;">{{ vaca.periodo.expediente }}</h6>
+                </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Tipo de vacaciones</h5>
+                  <h6 style="color: #0d4978;font-size: 20px;">{{ vaca.tipo_vaca }}</h6>
+                </div>
+                </div>
+
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Periodo</h5>
+                        <h6 style="color: #0d4978;">{{ vaca.periodo }}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s3 m3 l3 center-align center-align ">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Fecha inicial</h5>
+                        <h6 style="color: #0d4978;">{{ vaca.fech_inic }}</h6>
+                    </div>
+                </div>
+                <div class="col s3 m3 l3 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Fecha de culminacion</h5>
+                    <h6 style="color: #0d4978;">{{ vaca.fech_culm }}</h6>
+                    </div>
+                </div>
+                <div class="col s3 m3 l3 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Fecha de reintegro</h5>
+                    <h6 style="color: #0d4978;">{{ vaca.fech_rein }}</h6>
+                    </div>
+                </div>
+                <div class="col s3 m3 l3 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Estatus</h5>
+                        {% if vaca.estatus == 'Aprobada' %}
+                            <h6 style="color: green;">{{ vaca.estatus }}</h6>
+                        {% endif %}
+                        {% if vaca.estatus == 'Rechazada' %}
+                            <h6 style="color: red;">{{ vaca.estatus }}</h6>
+                        {% endif %}
+                        {% if vaca.estatus == 'Pendiente' %}
+                            <h6 style="color: #0d4978;">{{ vaca.estatus }}</h6>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if user.is_analista_vacaciones and vaca.estatus == 'Pendiente' %}
+            <form action="{% url 'Constancias:estatus' pk=vaca.id %}" id="form" method="post" style="color:black;">
+                {% csrf_token %}
+                <div class="row hide" id="fom1">
+                    
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="obs" name="observacion"></textarea>
+                        <label for="obs">Observación:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="cor" name="coordinacion"></textarea>
+                        <label for="obs">Coordinación:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="dir" name="direc_linea"></textarea>
+                        <label for="obs">Direccion de Linea:</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="gen" name="direc_gener"></textarea>
+                        <label for="obs">Direccion general:</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="ext" name="exten_tele"></textarea>
+                        <label for="obs">Extension telefonica:</label>
+                    </div>
+                    <div class="input-field col s12 hide">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="est1" name="estatus">Aprobada</textarea>
+                        <label for="obs">Extension telefonica:</label>
+                    </div>
+
+                </div>
+                <div class="row hide" id="fom2">
+                    
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="obs1" name="observacion"></textarea>
+                        <label for="obs">Observación:</label>
+                    </div>
+                    
+                    <div class="input-field col s12 hide">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="est2" name="estatus">Rechazada</textarea>
+                        <label for="obs">Extension telefonica:</label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+
+                        <button class="btn waves-effect hide en" type="submit">Enviar</button>
+                        <button class="btn waves-effect ap" type="button">Aceptar</button>
+                        <button class="btn waves-effect red re" type="button">Rechazar</button>
+                    </div>   
+                </div>
+            </form>
+            <br>
+            {% endif %}
+            {% if vaca.estatus == 'Aprobada' %}
+            <div class="row">
+                <div class="col s3 m3 l3 center-align center-align">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Observación</h5>
+                        <h6 style="color: #0d4978;">{{ vaca.observacion }}</h6>
+                    </div>
+                </div>
+                <div class="col s3 m3 l3 center-align center-align flight-state-two ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Coordinación</h5>
+                    <h6 style="color: #0d4978;">{{ vaca.coordinacion }}</h6>
+                    </div>
+                </div>
+                <div class="col s3 m3 l3 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Dirección de Linea</h5>
+                    <h6 style="color: #0d4978;">{{ vaca.direc_linea }}</h6>
+                    </div>
+                </div>
+                <div class="col s3 m3 l3 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Dirección general</h5>
+                        <h6 style="color: #0d4978;">{{ vaca.direc_gener }}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s12 m12 l12 center-align center-align ">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Extension telefonica</h5>
+                        <h6 style="color: #0d4978;">{{ vaca.exten_tele }}</h6>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if vaca.estatus == 'Rechazada' %}
+            <div class="row">
+                <div class="col s12 m12 l12 center-align center-align">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Observación</h5>
+                        <h6 style="color: #0d4978;">{{ vaca.observacion }}</h6>
+                    </div>
+                </div>
+                
+            </div>
+            {% endif %}
+            <br>
+            
+            <div class="row">
+                <a href="/constancias/listvaca/" class="btn waves-effect waves-light right">Volver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+<script src="{% static 'lib/data-table-deparweb/js/jquery-3.3.1.js' %}"></script>
+<script type="text/javascript">
+    $('.ap').on('click',function(e){
+        $(this).addClass('hide');
+        $('.en').removeClass('hide');
+        $('.re').removeClass('hide');
+        $('#fom1').removeClass('hide');
+        $('#fom2').addClass('hide');
+        $('#est1').removeAttr('disabled');
+        $('#est2').attr('disabled','disabled');
+        $('#obs1').attr('disabled','disabled');
+        $('#obs').removeAttr('disabled');
+
+        $('#obs').attr('required','required');
+        $('#cor').attr('required','required');
+        $('#dir').attr('required','required');
+        $('#gen').attr('required','required');
+        $('#ext').attr('required','required');
+        $('#obs1').removeAttr('required');
+
+    })
+    $('.re').on('click',function(e){
+        $(this).addClass('hide');
+        $('.en').removeClass('hide');
+        $('.ap').removeClass('hide');
+        $('#fom2').removeClass('hide');
+        $('#fom1').addClass('hide');
+
+        $('#est2').removeAttr('disabled');
+
+        $('#est1').attr('disabled','disabled');
+        $('#obs1').attr('required','required');
+        $('#obs').attr('disabled','disabled');
+
+        $('#obs1').removeAttr('disabled');
+
+        $('#cor').removeAttr('required');
+        $('#dir').removeAttr('required');
+        $('#gen').removeAttr('required');
+        $('#ext').removeAttr('required');
+    })
+</script>
+{% endblock %}

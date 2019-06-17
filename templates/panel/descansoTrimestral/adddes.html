@@ -1,0 +1,253 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="title text-capitalize">Nuevo Descanso Trimestral</h4>
+            {% if messages %}
+              {% for message in messages %}
+            <div id="card-alert" class="card light-blue">
+              <div class="card-content white-text">
+                <p><i class="material-icons prefix">check</i>{{message}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+            <div class="row">
+                <form class="col s12" id="formValidate" role="form"
+                    method="POST" name="formulario">
+                    {% csrf_token %}
+                    <!-- {{ des_tri.as_p }} -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">contact_phone</i>
+                            <select name="opci" id="opci" onchange="habilitar(this)">
+                                {% for x,y in des_tri.fields.opci.choices %}
+                                <option value="{{ x }}"{% if des_tri.fields.opci.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="opci">Tipo de solicitud</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">today</i>
+                            <input type="date" name="fech_solici" id="fech_solici" class="datepicker" requerid>
+                            <label for="fech_solici">Fecha de Solicitud</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">today</i>
+                            <input type="date" name="fech_fin" id="fech_fin" readonly requerid>
+                            <label for="fech_fin" class="active">Fecha Fin</label>
+                        </div>
+                    </div>
+                    <h4 class="Subtitulo text-capitalize">Obligatorios</h4>
+                    <div class="row">
+                        <div class="col s12">
+                            <i class="material-icons prefix"></i>
+                            <input name="carg_libr_nom" type="checkbox"
+                                aria-required="true" id="carg_libr_nom" class="only-one"/>
+                            <label for="carg_libr_nom">Cargo libre nombramiento,
+                            remocion y/o representacion popular </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <i class="material-icons prefix"></i>
+                            <input name="falle_fami_metro" type="checkbox"
+                                aria-required="true" id="falle_fami_metro" class="only-one"/>
+                            <label for="falle_fami_metro">Fallecimiento familiar
+                            (zona metropolitana)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <i class="material-icons prefix"></i>
+                            <input name="falle_fami_exte" type="checkbox"
+                                aria-required="true" id="falle_fami_exte" class="only-one"/>
+                            <label for="falle_fami_exte">Fallecimiento familiar
+                            (interior o exterior del pais)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <i class="material-icons prefix"></i>
+                            <input name="com_ant_tribu" type="checkbox"
+                                aria-required="true" id="com_ant_tribu" class="only-one"/>
+                            <label for="com_ant_tribu">Comparencia ante los tribunales</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                            <i class="material-icons prefix"></i>
+                            <input name="enfer" type="checkbox"
+                                aria-required="true" id="enfer" class="only-one"/>
+                            <label for="enfer">Enfermedad</label>
+                        </div>
+                    
+                        <div class="col s4">
+                            <i class="material-icons prefix"></i>
+                            <input name="accid" type="checkbox"
+                                aria-required="true" id="accid" class="only-one"/>
+                            <label for="accid">Accidente</label>
+                        </div>
+                        <div class="col s4">
+                            <i class="material-icons prefix"></i>
+                            <input name="nacim_hij" type="checkbox"
+                                aria-required="true" id="nacim_hij" class="only-one"/>
+                            <label for="nacim_hij">Nacimiento de hijo</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s4">
+                            <i class="material-icons prefix"></i>
+                            <input name="matrim" type="checkbox"
+                                aria-required="true" id="matrim" class="only-one"/>
+                            <label for="matrim">Matrimonio</label>
+                        </div>
+                        <div class="col s4">
+                            <i class="material-icons prefix"></i>
+                            <input name="pre_natal" type="checkbox"
+                                aria-required="true" id="pre_natal" class="only-one"/>
+                            <label for="pre_natal">Pre-natal</label>
+                        </div>
+                        <div class="col s4">
+                            <i class="material-icons prefix"></i>
+                            <input name="post_natal" type="checkbox"
+                                aria-required="true" id="post_natal" class="only-one"/>
+                            <label for="post_natal">Post-natal</label>
+                        </div>
+                    </div>
+                    <h4 class="Subtitulo">Potestativos</h4>
+                    <div class="row">
+                        <div class="col s12">
+                            <i class="material-icons prefix"></i>
+                            <input name="asis_curs_confe" type="checkbox"
+                                aria-required="true" id="asis_curs_confe" class="only-one"/>
+                            <label for="asis_curs_confe">Asistencia a curso ,seminario,
+                                conferencia o congreso.
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="enfer_fami" type="checkbox"
+                                aria-required="true" id="enfer_fami" class="only-one"/>
+                            <label for="enfer_fami">Enfermedad familiar</label>
+                        </div>
+                    
+                        <div class="col s6">
+                            <i class="material-icons prefix"></i>
+                            <input name="estu_acade" type="checkbox"
+                                aria-required="true" id="estu_acade" class="only-one"/>
+                            <label for="estu_acade">Estudios academicos</label>
+                        </div>
+                    </div>
+                    <p>Asistencia a consulta o examenes medicos:</p>
+                    <div class="row">
+                        <div class="col s12">
+                            <i class="material-icons prefix"></i>
+                            <input name="dili_pers" type="checkbox"
+                                aria-required="true" id="dili_pers" class="only-one"/>
+                            <label for="dili_pers">Diligencia personal</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">reorder</i>
+                            <input type="text" name="otro" requerid
+                                aria-required="true" class="only-one">
+                            <label for="otro">Otro(especifique)</label>
+                        </div>
+                    </div>
+                    {% for error in des_tri.non_field_errors %}
+						<div id="error-user" class="alert alert-danger " >
+							<div class="container-fluid">
+								<div class="alert-icon">
+									<b><i class="fa fa-exclamation-triangle"></i> Alerta de Error:</b>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true"><i class="fa fa-remove"></i></span>
+									</button>
+								</div>
+								<p style="margin-top: 1em;">Por favor, ingrese el correo y la clave correctos.</p>
+							</div>
+						</div>
+						{% endfor %}
+                    <div class="row">
+                        <button class="btn waves-effect waves-light
+                            right" type="submit" name="action"
+                            onclick="click()">Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                        <a href="/trabaexpe/admin/" class="btn waves-effect
+                            waves-light right">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'lib/data-table-deparweb/js/jquery-3.3.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/moment.js' %}"></script>
+
+<script>
+        d = new Date();
+    var month = d.getMonth()+1
+    var day = d.getDate()+1
+    output = d.getFullYear()+'/'+(month<10?'0':'')+month+'/'+(day<10?'0':'')+day
+    mes = moment(output).add(3,'months').format('YYYY/MM/DD')
+    let Checked = null;
+    //The class name can vary
+    for (let CheckBox of document.getElementsByClassName('only-one')){
+        CheckBox.onclick = function(){
+        if(Checked!=null){
+        Checked.checked = false;
+        Checked = CheckBox;
+        }
+        Checked = CheckBox;
+    }
+    }
+    $(document).ready(function() {
+        $("#submit").on("click", function() {
+            var condiciones = $(".only-one").is(":checked");
+            if (!condiciones) {
+                alert("Debe aceptar las condiciones");
+                event.preventDefault();
+            }
+        });
+        $('.datepicker').pickadate({
+        
+        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthsShort: ["Eneno", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciciembre"],
+        weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+        weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+        weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"],
+        cancel: 'Cancelar',
+        clear: 'Limpiar',
+        today:'Hoy',
+        done: 'Ok',
+
+        min:new Date(mes),
+        format:'dd/mm/yyyy',
+        
+        onClose:function(){
+            if($('#fech_solici').val() != ''){
+                fec = $('#fech_solici').val().split('/')
+                fecha = moment(fec[2]+'-'+fec[1]+'-'+fec[0]).format('YYYY-MM-DD')
+                console.log(fecha)
+                $('#fech_fin').val(moment(fecha).add(10,'days').format('YYYY-MM-DD'))
+
+            }else{
+                $('#fech_solici').val('')
+
+            }
+        }
+
+    });
+    });
+</script>
+
+{% endblock %}

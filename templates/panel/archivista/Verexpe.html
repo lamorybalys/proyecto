@@ -1,0 +1,925 @@
+{% extends '../../base/base.html' %}
+{% load static %}
+{% block content %}
+<!--  -->
+
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a href="#expe">Expediente</a></li>
+                <li class="tab col s3"><a href="#traba">Trabajador</a></li>
+                <li class="tab col s3"><a href="#eva">Evaluacion</a></li>
+                <li class="tab col s3"><a href="#crono">Cronologico</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col s12">
+                <ul class="tabs" id="tab2">
+                    <li class="tab col s3"><a href="#"><i class="material-icons">arrow_forward</i></a></li>
+                    <li class="tab col s2"><a href="#vaca">Vacaciones</a></li>
+                    <li class="tab col s2"><a href="#seg_soc">Seguro</a></li>
+                    <li class="tab col s2"><a href="#des_tri">Desca_trime</a></li>
+                    <li class="tab col s2"><a href="#jubi">Jubi</a></li>
+                </ul>
+            </div>
+    </div>
+ 
+    <div id="expe">
+        <div id="flight-card" class="card">
+            <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+                <div class="card-title">
+                
+                <div class="col s12 m2 l2 center-align">
+                    <h4 class="flight-card-title">Expediente N° {{expe.cedula}}</h4>
+                    <i class="material-icons" style="color: white;">folder</i>
+                </div>
+                </div>
+            </div>
+            <div class="white-text">
+                <div class="card-content" style="    background: #ffffffe6">
+                <div class="row">
+                    <div class="col s12 m4 l4 center-align center-align ">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Trabajador</h5>
+                        <h6 style="color: #0d4978;">{{ expe.trabajador }}</h6>
+                    </div>
+                    
+                    </div>
+                    <div class="col s12 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Titulo</h5>
+                        <h6 style="color: #0d4978;">
+                        {% if expe.titulo == True %}
+                            <th>Si</th>
+                        {% else %}
+                            <th>No</th>
+                        {% endif %}</h6>
+                    </div>
+                    </div>
+                    
+                    <div class="col s12 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Copia de cedula</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if expe.cop_cedula == True %}
+                                        <th>Si</th>
+                                    {% else %}
+                                        <th>No</th>
+                                    {% endif %}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col s12 m4 l4 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Partida de nacimiento</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if expe.parti_nacimiento == True %}
+                                    <th>Si</th>
+                                {% else %}
+                                    <th>No</th>
+                                {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Registro del censo personal</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if expe.regi_cen_per == True %}
+                                    <th>Si</th>
+                                {% else %}
+                                    <th>No</th>
+                                {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Sintesis curricular</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if expe.sinte_curri == True %}
+                                        <th>Si</th>
+                                    {% else %}
+                                        <th>No</th>
+                                    {% endif %}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col s12 m4 l4 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Fideicomiso</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if expe.fideicomiso == True %}
+                                    <th>Si</th>
+                                {% else %}
+                                    <th>No</th>
+                                {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Recibo de pago</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if expe.recibo_pago == True %}
+                                    <th>Si</th>
+                                {% else %}
+                                    <th>No</th>
+                                {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Carta de concubinato</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if expe.cart_cunc == True %}
+                                        <th>Si</th>
+                                    {% else %}
+                                        <th>No</th>
+                                    {% endif %}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col s12 m4 m4 center-align center-align ">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Acta de matrimonio</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if expe.act_matr == True %}
+                                        <th>Si</th>
+                                    {% else %}
+                                        <th>No</th>
+                                    {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Acta de difusion</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if expe.act_difu == True %}
+                                        <th>Si</th>
+                                    {% else %}
+                                        <th>No</th>
+                                    {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Estado civil</h5>
+                            <h6 style="color: #0d4978;">{{ expe.estado_civil }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col s12 m12 m12 center-align center-align ">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Director</h5>
+                            <h6 style="color: #0d4978;">{{ expe.directores }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                </div>
+            </div>
+            </div>
+    </div>
+    <div id="traba">
+            {% for traba in traba %}
+            <div id="flight-card" class="card">
+                <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+                  <div class="card-title">
+                    
+                    <div class="col s2 m2 l2 center-align">
+                        <h4 class="flight-card-title">Trabajador N° {{traba.cedu_trab}}</h4>
+                        <i class="material-icons" style="color: white;">accessibility</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="white-text">
+                  <div class="card-content" style="    background: #ffffffe6">
+                    <div class="row">
+                      <div class="col s4 m4 l4 center-align center-align ">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Nombre</h5>
+                          <h6 style="color: #0d4978;">{{ traba.nomb_trab }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Apellido</h5>
+                          <h6 style="color: #0d4978;">{{ traba.ape_trab }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Codigo de telefono</h5>
+                                <h6 style="color: #0d4978;">{{ traba.cod_tele }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s4 m4 l4 center-align center-align ">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Telefono</h5>
+                            <h6 style="color: #0d4978;">{{ traba.telefono }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Sexo</h5>
+                            <h6 style="color: #0d4978;">{{ traba.sexo }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Numero de Ric</h5>
+                                <h6 style="color: #0d4978;">{{ traba.num_ric }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s4 m4 l4 center-align center-align ">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Fecha de Ingreso Publicado</h5>
+                            <h6 style="color: #0d4978;">{{ traba.fech_ing_pub }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Fecha de Ingreso Institucional</h5>
+                            <h6 style="color: #0d4978;">{{ traba.fech_ing_inst }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Codigo de Rac</h5>
+                                <h6 style="color: #0d4978;">{{ traba.cod_rac }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s4 m4 m4 center-align center-align ">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Cargos</h5>
+                                <h6 style="color: #0d4978;">{{ traba.cargos }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Fecha de nacimiento</h5>
+                                <h6 style="color: #0d4978;">{{ traba.fech_naci }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Estatus</h5>
+                                <h6 style="color: #0d4978;">{{ traba.estat_traba }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+    <div id="eva">
+        {% for eva in eva %}
+        <div id="flight-card" class="card">
+                <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+                  <div class="card-title">
+                    
+                    <div class="col s2 m2 l2 center-align">
+                        <h4 class="flight-card-title">Evaluacion N° {{eva.cod_evalua}}</h4>
+                        <i class="material-icons" style="color: white;">import_contacts</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="white-text">
+                  <div class="card-content" style="    background: #ffffffe6">
+                    <div class="row">
+                      <div class="col s4 m4 l4 center-align center-align ">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                          <h6 style="color: #0d4978;">{{ eva.expediente }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Periodo</h5>
+                          <h6 style="color: #0d4978;">{{ eva.periodo }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Año</h5>
+                                <h6 style="color: #0d4978;">{{ eva.año }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s12 m6 l6 center-align center-align ">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Escala</h5>
+                            <h6 style="color: #0d4978;">{{ eva.escala }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l6 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Nota</h5>
+                            <h6 style="color: #0d4978;">{{ eva.nota }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+    <div id="crono">
+        {% for crono in crono %}
+        <div id="flight-card" class="card">
+                <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+                  <div class="card-title">
+                    
+                    <div class="col s2 m2 l2 center-align">
+                        <h4 class="flight-card-title">Cronologico N° {{crono.cod_crono}}</h4>
+                        <i class="material-icons" style="color: white;">all_inclusive</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="white-text">
+                  <div class="card-content" style="    background: #ffffffe6">
+                    <div class="row">
+                      <div class="col s4 m4 l4 center-align center-align ">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                          <h6 style="color: #0d4978;">{{ crono.expediente }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Fecha desde:</h5>
+                          <h6 style="color: #0d4978;">{{ crono.fech_des }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Fecha hasta:</h5>
+                                <h6 style="color: #0d4978;">{{ crono.fech_has }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s12 m6 l6 center-align center-align ">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Cargo anterior</h5>
+                            <h6 style="color: #0d4978;">{{ crono.carg_ante }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l6 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Institucion</h5>
+                            <h6 style="color: #0d4978;">{{ crono.institucion }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+    <div id="des_tri">
+        {% for des_tri in des_tri %}
+        <div id="flight-card" class="card">
+            <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+                <div class="card-title">
+                
+                <div class="col s2 m2 l2 center-align">
+                    <h4 class="flight-card-title">Descanso Trimestral N° {{des_tri.cod_des_tri}}</h4>
+                    <i class="material-icons" style="color: white;">near_me</i>
+                </div>
+                
+                </div>
+                
+            </div>
+            <p class="center font-weight-800" style="color: #0d4978;">Este simbolo significa "Si" selecciono <i class="material-icons">check_circle</i> </p>
+            <p class="center font-weight-800" style="color: #0d4978;">Este simbolo significa "No" selecciono<i class="material-icons">highlight_off</i></p>          
+            <br>
+            <div class="white-text">
+                <div class="card-content" style="    background: #ffffffe6">
+                <div class="row">
+                    <div class="col s4 m4 l4 center-align center-align ">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                        <h6 style="color: #0d4978;">{{ des_tri.expediente }}</h6>
+                    </div>
+                    </div>
+                    <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Tipo de solicitud</h5>
+                        <h6 style="color: #0d4978;">{{ des_tri.opci }}</h6>
+                    </div>
+                    </div>
+                    <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Fecha de Solicitud</h5>
+                            <h6 style="color: #0d4978;">{{ des_tri.fech_solici }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col s2 m2 l2 center-align" style="background-color: #0d4978 !important;">
+                    <h4 class="flight-card-title">Obligatorios</h4>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col s12 m6 l4 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Cargo libre nombramiento</h5>
+                        <h6 style="color: #0d4978;">
+                            {% if des_tri.carg_libr_nom == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Fallecimiento familiar
+                                (zona metropolitana)</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if des_tri.institucion == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Fallecimiento familiar
+                                    (interior o exterior del pais)</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if des_tri.falle_fami_exte == True %}
+                                    <p> <i class="material-icons">check_circle</i> </p>
+                                {% else %}
+                                    <p><i class="material-icons">highlight_off</i></p>
+                                
+                            {% endif %}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                        <div class="col s12 m6 l4 center-align center-align ">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Comparencia ante los tribunales</h5>
+                            <h6 style="color: #0d4978;">
+                                {% if des_tri.com_ant_tribu == True %}
+                                    <p> <i class="material-icons">check_circle</i> </p>
+                                {% else %}
+                                    <p><i class="material-icons">highlight_off</i></p>
+                                
+                            {% endif %}</h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Enfermedad</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if des_tri.enfer == True %}
+                                    <p> <i class="material-icons">check_circle</i> </p>
+                                {% else %}
+                                    <p><i class="material-icons">highlight_off</i></p>
+                                
+                            {% endif %}</h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Accidente</h5>
+                                <h6 style="color: #0d4978;">
+                                        {% if des_tri.accid == True %}
+                                        <p> <i class="material-icons">check_circle</i> </p>
+                                    {% else %}
+                                        <p><i class="material-icons">highlight_off</i></p>
+                                    
+                                {% endif %}</h6>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6 l4 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Nacimiento de hijo</h5>
+                        <h6 style="color: #0d4978;">
+                            {% if des_tri.nacim_hij == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Matrimonio</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if des_tri.matrim == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Pre-natal</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if des_tri.pre_natal == True %}
+                                    <p> <i class="material-icons">check_circle</i> </p>
+                                {% else %}
+                                    <p><i class="material-icons">highlight_off</i></p>
+                                
+                            {% endif %}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col s12 m6 l12 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Post-natal</h5>
+                        <h6 style="color: #0d4978;">
+                            {% if des_tri.post_natal == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s2 m2 l2 center-align" style="background-color: #0d4978 !important;">
+                    <h4 class="flight-card-title">Potestativos</h4>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col s12 m6 l4 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Asistencia a curso ,seminario,
+                                conferencia o congreso.</h5>
+                        <h6 style="color: #0d4978;">
+                            {% if des_tri.asis_curs_confe == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Enfermedad familiar</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if des_tri.enfer_fami == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Estudios academicos</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if des_tri.estu_acade == True %}
+                                    <p> <i class="material-icons">check_circle</i> </p>
+                                {% else %}
+                                    <p><i class="material-icons">highlight_off</i></p>
+                                
+                            {% endif %}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h5 class="margin" style="color: #0d4978;">Asistencia a consulta o examenes medicos:</h5>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col s12 m6 l4 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Diligencia personal</h5>
+                        <h6 style="color: #0d4978;">
+                            {% if des_tri.dili_pers == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Enfermedad</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if des_tri.enfer == True %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Otro(especifique)</h5>
+                            <h6 style="color: #0d4978;">
+                                {% if des_tri.otro == None %}
+                                    <p><i class="material-icons">highlight_off</i>  </p>
+                                {% else %}
+                                    <p>{{ des_tri.otro }}</p>
+                            {% endif %}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col s12 m4 l12 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Observaciones</h5>
+                        <h6 style="color: #0d4978;">{{ des_tri.observacion }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <h5 class="margin" style="color: #0d4978;">Duracion de permiso:</h5>
+                <br>
+                <div class="row">
+                    <h5 class="margin center" style="color: #0d4978;">Hora(s)</h5>
+                    <br>
+                    <div class="col s12 m6 l6 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Desde:</h5>
+                        <h6 style="color: #0d4978;">{{ des_tri.des_hor }}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l6 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Hasta:</h5>
+                        <h6 style="color: #0d4978;">{{ des_tri.hast_hor }}</h6>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <h5 class="margin center" style="color: #0d4978;">Dia(s)</h5>
+                    <br>
+                    <div class="col s12 m6 l6 center-align">
+                        
+                        <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Desde:</h5>
+                                <h6 style="color: #0d4978;">{{ des_tri.des_dia }}</h6>
+                            
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l6 center-align center-align flight-state-two">   
+                        <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Hasta:</h5>
+                                <h6 style="color: #0d4978;">{{ des_tri.hast_dia }}</h6>
+                            
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div id="vaca">
+        {% for vaca in vaca %}
+        <div id="flight-card" class="card">
+                <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+                  <div class="card-title">
+                    
+                    <div class="col s2 m2 l2 center-align">
+                        <h4 class="flight-card-title">Vacaciones N° {{vaca.cod_vaca}}</h4>
+                        <i class="material-icons flight-icon" style="color: white;">beach_access</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="white-text">
+                  <div class="card-content" style="    background: #ffffffe6">
+                    <div class="row">
+                      <div class="col s4 m4 l4 center-align center-align ">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                          <h6 style="color: #0d4978;">{{ vaca.expediente }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Tipo de vacaciones</h5>
+                          <h6 style="color: #0d4978;">{{ vaca.tipo_vaca }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Periodo a disfrutar desde:</h5>
+                                <h6 style="color: #0d4978;">{{ vaca.per_vaca_dis_des }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s4 m4 l4 center-align center-align ">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Fecha de culminacion</h5>
+                            <h6 style="color: #0d4978;">{{ vaca.fech_culm }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Fecha de reintegro</h5>
+                            <h6 style="color: #0d4978;">{{ vaca.fech_reint }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Observacion</h5>
+                                <h6 style="color: #0d4978;">{{ vaca.observacion }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s4 m4 l4 center-align center-align ">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Coordinacion</h5>
+                            <h6 style="color: #0d4978;">{{ vaca.coordinacion }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Direccion de Linea</h5>
+                            <h6 style="color: #0d4978;">{{ vaca.direc_linea }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Direccion general</h5>
+                                <h6 style="color: #0d4978;">{{ vaca.direc_gener }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s12 m12 l12 center-align center-align ">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Extension telefonica</h5>
+                                <h6 style="color: #0d4978;">{{ vaca.exten_tele }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <a href="/constancias/listvaca/" class="btn waves-effect
+                            waves-light right">Volver</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+    <div id="seg_soc">
+        {% for seg_soc in seg_soc %}
+        <div id="flight-card" class="card">
+                <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+                  <div class="card-title">
+                    
+                    <div class="col s2 m2 l2 center-align">
+                        <h4 class="flight-card-title">Seguro Social N° {{segu_social.cod_seg_soc}}</h4>
+                        <i class="material-icons" style="color: white;">archive</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="white-text">
+                  <div class="card-content" style="    background: #ffffffe6">
+                    <div class="row">
+                      <div class="col s4 m4 l4 center-align center-align ">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                          <h6 style="color: #0d4978;">{{ seg_soc.expediente }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Pensionado</h5>
+                          <h6 style="color: #0d4978;">{{ seg_soc.trami_pens }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Estatus</h5>
+                                <h6 style="color: #0d4978;">{{ seg_soc.esta_seg_soc }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col s12 m6 l4 center-align center-align ">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Fecha de funcion</h5>
+                            <h6 style="color: #0d4978;">{{ seg_soc.fech_func }}</h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Constancia 1402</h5>
+                            <h6 style="color: #0d4978;">{% if seg_soc.const_1402 == True %}
+                                    <th>Si</th>
+                                {% else %}
+                                    <th>No</th>
+                                {% endif %}</h6>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Constancia 1403</h5>
+                                <h6 style="color: #0d4978;">{% if seg_soc.const_1403 == True %}
+                                        <th>Si</th>
+                                    {% else %}
+                                        <th>No</th>
+                                    {% endif %}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+    <div id="jubi">
+        {% for jubi in jubi %}
+        <div id="flight-card" class="card">
+                <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+                  <div class="card-title">
+                    
+                    <div class="col s2 m2 l2 center-align">
+                        <h4 class="flight-card-title">Jubilado N° {{jubi.cod_jubila}}</h4>
+                        <i class="material-icons" style="color: white;">accessibility</i>
+                    </div>
+                  </div>
+                </div>
+                <div class="white-text">
+                  <div class="card-content" style="    background: #ffffffe6">
+                    <div class="row">
+                      <div class="col s4 m4 l4 center-align center-align ">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                          <h6 style="color: #0d4978;">{{ jubi.expediente }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                          <h5 class="margin" style="color: #0d4978;">Jubilado</h5>
+                          <h6 style="color: #0d4978;">{{ jubi.jubilados }}</h6>
+                        </div>
+                      </div>
+                      <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                            <div class="flight-state">
+                                <h5 class="margin" style="color: #0d4978;">Cambio a otra institucion</h5>
+                                <h6 style="color: #0d4978;">{{ jubi.cambio }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+    
+
+{% endblock %}

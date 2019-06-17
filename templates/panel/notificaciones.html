@@ -1,0 +1,81 @@
+{% load staticfiles %}
+{% block content %}
+<ul class="right hide-on-med-and-down">
+    <li>
+    <a href="javascript:void(0);" class="waves-effect waves-block waves-light notification-button" data-activates="notifications-dropdown">
+        <i class="material-icons">notifications_none
+        <small class="notification-badge pink accent-2">{{pendientes}}</small>
+        </i>
+    </a>
+    </li>
+    <li>
+    <a href="javascript:void(0);" class="waves-effect waves-block waves-light profile-button" data-activates="profile-dropdown">
+        <span class="avatar-status avatar-online">
+        <img src="{% static 'images/avatar/in10.jpg'%}" alt="avatar">
+        <i></i>
+        </span>
+    </a>
+    </li>
+</ul>
+<!-- notifications-dropdown -->
+<ul id="notifications-dropdown" class="dropdown-content">
+
+    {% if notificaciones %}
+    {% for notificacion in notificaciones %}
+    <li>
+    <a onclick="redi('{{notificacion.id}}','{{notificacion.url}}')" class="grey-text text-darken-2" style="width: 280px;" >
+        <div class="row" style="margin-bottom:0px;">
+            <div class="col s12" style="white-space: normal;padding: 0;margin: 0;">
+                {{notificacion.contenido}}
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:0px;">
+            <div class="col s6 left" >
+                {% if notificacion.estatus == True %}
+                <i class="material-icons" style="color:green;font-size: 16px">check_circle</i>
+                {% else %}
+                <i class="material-icons" style="color:red;font-size: 16px">highlight_off</i>
+                {% endif %}
+            </div>
+            <div class="col s6 right">
+                <p style="color: gray; font-size: 14px;">{{notificacion.fecha.date}}</p>
+            </div>
+        </div>
+    </a>
+    </li>
+    {% endfor %}
+    <li class="divider"></li>
+    <li>
+        <a href="{% url 'Constancias:Listnoti'%}" class="center grey-text text-darken-2" style="width: 280px;">
+            Ver todas
+        </a>
+    </li>
+    {% else %}
+    <li>
+        <a href="#" class="center grey-text text-darken-2" style="width: 280px;">
+            No posee ninguna notificación
+        </a>
+    </li>
+    {% endif %}
+    
+</ul>
+<script type="text/javascript" src="{% static 'vendors/jquery-3.2.1.min.js' %}"></script>
+
+ <script>
+ function redi(id,url){
+		$.ajax({
+			url: "{% url 'Trabaexpe:updNoti'%}",
+			type: "POST",
+			data: {"id":id,"csrfmiddlewaretoken":"{{ csrf_token }}"},
+			dataType: 'json',
+			success: function (data) {
+				if (data.valid){
+					window.location.href = url;
+				}else{
+					alert('no se puede actualizar la notificacion');
+				}
+			}
+		});
+	}
+ </script>           
+{% endblock %}

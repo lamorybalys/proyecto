@@ -1,0 +1,288 @@
+{% load staticfiles %}
+<!-- Main content -->
+<!DOCTYPE html>
+<html>
+	<head>
+		{% block extrahead %}
+		{% endblock %}
+		<meta content="charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>{% block title %}DeparWeb{% endblock %}</title>
+		<!-- Favicons-->
+		<link rel="icon" href="{% static 'images/mini--logo.png' %}" sizes="32x32">
+		<!-- <link href="{% static 'lib/tabla/css/bootstrap.min.css' %}"
+			rel="stylesheet"> -->
+		<link rel="stylesheet" href="{% static 'lib/tabla/css/jquery.dataTables.min.css' %}">
+		<link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'css/dropify.min.css' %}">
+		<link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet">
+		<link href="{% static 'css/custom/custom.css' %}" type="text/css" rel="stylesheet">
+		<link rel="stylesheet" href="{% static 'lib/font-awesome/css/fontawesome-all.css'%}">
+		<link rel="stylesheet" href="{% static 'css/icon.css'%}">
+		<link rel="stylesheet" href="{% static 'lib/flickity/css/flickity.css' %}">
+		<link rel="stylesheet" href="{% static 'css/custom/custom--only.css' %}">	
+	</head>
+	<style>
+		html{
+			color:black!important;
+		}
+		h5,h6,h2,h1{
+			color:black!important;
+		}
+	</style>
+	<body>
+		{% block header %}
+		<!-- Start Page Loading -->
+		<div id="loader-wrapper">
+			<div id="loader"></div>
+			<div class="loader-section section-left"></div>
+			<div class="loader-section section-right"></div>
+		</div>
+		<!-- End Page Loading -->
+		<!--
+			////////////////////////////////////////////////////////////////////////////
+			-->
+		<!-- START HEADER -->
+		{% comment %} Nav -- Admin {% endcomment %}
+		{% include "../panelAdmin/navAdmin.html" %}
+
+		{% comment %} Nav -- Jubilacion {% endcomment %}
+		{% include "../panel/jubilacion/navJubi.html" %}
+
+		{% comment %} Nav -- Vacaciones {% endcomment %}
+		{% include "../panel/vacaciones/navVaca.html" %}
+
+		{% comment %} Nav -- Seguro Social {% endcomment %}
+		{% include "../panel/seguro_social/navSeg.html" %}
+
+		{% comment %} Nav -- Trabajador {% endcomment %}
+		{% include "../panel/trabajador/navTraba.html" %}
+
+		{% comment %} Nav -- Archivista {% endcomment %}
+		{% include "../panel/archivista/navArch.html" %}
+
+		<!-- END HEADER -->
+		<!--
+			////////////////////////////////////////////////////////////////////////////
+			-->
+		<!-- START MAIN -->
+		<div id="main">
+			<!-- START WRAPPER -->
+			<div class="wrapper">
+				<!-- START LEFT SIDEBAR NAV-->
+				<aside id="left-sidebar-nav">
+					<ul id="slide-out" class="side-nav fixed leftside-navigation">
+						{% comment %} MENU--SUPERUSER {% endcomment %}
+						{% include "../panelAdmin/menuAdmin.html" %}
+
+						{% comment %} MENU--SEGURO_SOCIAL {% endcomment %}
+						{% include "../panel/seguro_social/menuSeg.html" %}
+
+						{% comment %} MENU--TRABAJADOR {% endcomment %}
+						{% include "../panel/trabajador/menuTraba.html" %}
+
+						{% comment %} MENU--VACACIONES {% endcomment %}
+						{% include "../panel/vacaciones/menuVaca.html" %}
+
+						{% comment %} MENU--ARCHIVISTA {% endcomment %}
+						{% include "../panel/archivista/menuArch.html" %}
+
+						{% comment %} MENU--JUBILACION {% endcomment %}
+						{% include "../panel/jubilacion/menuJubi.html" %}
+
+						{% endblock %}
+						<a href="#" data-activates="slide-out" class="sidebar-collapse
+							btn-floating btn-medium waves-effect waves-light
+							hide-on-large-only">
+							<i class="material-icons">menu</i>
+						</a>
+					</aside>
+					<!-- END LEFT SIDEBAR NAV-->
+					<!--
+						////////////////////////////////////////////////////////////////////////////
+						-->
+					<!-- START CONTENT -->
+					<section id="content">
+						<!--start container-->
+						<div class="container">
+							<!--card stats start-->
+							{% block content %}{% endblock %}
+						</div>
+						<!--end container-->
+					</section>
+				</div>
+				<!-- END WRAPPER -->
+			</div>
+			<!-- END MAIN -->
+			<!--
+				////////////////////////////////////////////////////////////////////////////
+				-->
+			<!-- START FOOTER -->
+			<footer class="page-footer gradient-45deg-light-blue-cyan">
+				<div class="footer-copyright">
+					<div class="container">
+						<span>DEPARWEB
+							<script type="text/javascript">
+								document.write(new Date().getFullYear());
+							</script> <a class="grey-text text-lighten-2"
+								href="http://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
+								target="_blank">CREADORES:</a> Gissell Viña - Yorbalys Almo -
+							Edixon Diaz</span>
+					</div>
+				</div>
+			</footer>
+			<!--================================================
+				Scripts================================================ -->
+			<!-- jQuery Library -->
+			<script type="text/javascript" src="{% static 'vendors/jquery-3.2.1.min.js' %}"></script>
+			<!--materialize js-->
+			<script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+			
+			<script type="text/javascript" src="{% static 'js/jquery.validate.min.js'%}"></script>
+			<script type="text/javascript" src="{% static 'js/myvalidaters.js' %}"></script>
+			<script type="text/javascript" src="{% static 'js/additional-methods.min.js' %}"></script>
+			<!--scrollbar-->
+			<script type="text/javascript" src="{% static 'vendors/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+			<!--plugins.js - Some Specific JS codes for Plugin Settings-->
+			<script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+			<!--custom-script.js - Add your own theme custom JS-->
+			<script type="text/javascript" src="{% static 'js/custom-script.js' %}"></script>
+			<!-- <script type="text/javascript" src="{% static
+				'lib/tabla/js/bootstrap.min.js' %}"></script> -->
+			<script type="text/javascript" src="{% static 'lib/tabla/js/jquery.dataTables.min.js' %}"></script>
+			<!-- -->
+			<script type="text/javascript" src="{% static 'js/dropify.min.js' %}"></script>
+			<script type="text/javascript">
+				$('.datepicker').on('mousedown',function(event){
+		    		event.preventDefault();
+		    	});
+				$(document).ready(function() {
+				$('#example').DataTable({
+				"language": {
+								"sProcessing":     "Procesando...",
+								"sLengthMenu":     "Mostrar _MENU_ registros",
+								"sZeroRecords":    "No se encontraron resultados",
+								"sEmptyTable":     "Ningún dato disponible en esta tabla",
+								"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+								"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+								"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+								"sInfoPostFix":    "",
+								"sSearch":         "Buscar:",
+								"sUrl":            "",
+								"sInfoThousands":  ",",
+								"sLoadingRecords": "Cargando...",
+								"oPaginate": {
+									"sFirst":    "Primero",
+									"sLast":     "Último",
+									"sNext":     "Siguiente",
+									"sPrevious": "Anterior"
+								},
+								"oAria": {
+									"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+									"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+								}
+							}
+							});
+						$("select").val('10');
+						$('select').addClass("browser-default");
+						$('select').material_select();
+						} );
+			</script>
+			<script>
+				$(document).ready(function(){
+
+				//jQuery time
+				var current_fs, next_fs, previous_fs; //fieldsets
+				var left, opacity, scale; //fieldset properties which we will animate
+				var animating; //flag to prevent quick multi-click glitches
+		
+				$(".next").click(function () {
+					if (animating) return false;
+					animating = true;
+		
+					current_fs = $(this).parent();
+					next_fs = $(this).parent().next();
+		
+					//activate next step on progressbar using the index of next_fs
+					$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+		
+					//show the next fieldset
+					next_fs.show();
+					//hide the current fieldset with style
+					current_fs.animate({ opacity: 0 }, {
+						step: function (now, mx) {
+							//as the opacity of current_fs reduces to 0 - stored in "now"
+							//1. scale current_fs down to 80%
+							scale = 1 - (1 - now) * 0.2;
+							//2. bring next_fs from the right(50%)
+							left = (now * 50) + "%";
+							//3. increase opacity of next_fs to 1 as it moves in
+							opacity = 1 - now;
+							current_fs.css({
+								'transform': 'scale(' + scale + ')',
+								'position': 'absolute'
+							});
+							next_fs.css({ 'left': left, 'opacity': opacity });
+						},
+						duration: 800,
+						complete: function () {
+							current_fs.hide();
+							animating = false;
+						},
+						//this comes from the custom easing plugin
+						easing: 'easeInOutBack'
+					});
+				});
+		
+				$(".previous").click(function () {
+					if (animating) return false;
+					animating = true;
+		
+					current_fs = $(this).parent();
+					previous_fs = $(this).parent().prev();
+		
+					//de-activate current step on progressbar
+					$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+		
+					//show the previous fieldset
+					previous_fs.show();
+					//hide the current fieldset with style
+					current_fs.animate({ opacity: 0 }, {
+						step: function (now, mx) {
+							//as the opacity of current_fs reduces to 0 - stored in "now"
+							//1. scale previous_fs from 80% to 100%
+							scale = 0.8 + (1 - now) * 0.2;
+							//2. take current_fs to the right(50%) - from 0%
+							left = ((1 - now) * 50) + "%";
+							//3. increase opacity of previous_fs to 1 as it moves in
+							opacity = 1 - now;
+							current_fs.css({ 'left': left });
+							previous_fs.css({ 'transform': 'scale(' + scale + ')', 'opacity': opacity });
+						},
+						duration: 800,
+						complete: function () {
+							current_fs.hide();
+							animating = false;
+						},
+						//this comes from the custom easing plugin
+						easing: 'easeInOutBack'
+					});
+				});
+		
+				$(".submit").click(function () {
+					return false;
+				})
+				$(document).on('keypress','.number',function(e){
+					var key = e.which,
+						keye = e.keyCode,
+						tecla = String.fromCharCode(key).toLowerCase(),
+						letras = "1234567890";
+					if(letras.indexOf(tecla)==-1 && keye!=9&& (key==37 || keye!=37)&& (keye!=39 || key==39) && keye!=8 && (keye!=46 || key==46) || key==161){
+						e.preventDefault();
+					}
+				})
+			});
+		</script>
+		
+	</body>
+</html>

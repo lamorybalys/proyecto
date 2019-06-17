@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="title text-capitalize">Nueva evaluacion</h4>
+            <div class="row">
+                <form class="col s12" id="formValidate" role="form"
+                    method="POST" name="formulario">
+                    {% csrf_token %}
+                    <!-- {{ eva.as_p }} -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input type="number" name="cod_evalua" requerid
+                                aria-required="true">
+                            <label for="cod_evalua">Codigo</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">folder</i>
+                            <select name="expediente" id="expediente" onchange="habilitar(this)">
+                                {% for x,y in eva.fields.expediente.choices %}
+                                <option value="{{ x }}"{% if eva.fields.expediente.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="expediente">Expediente</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">show_chart</i>
+                            <input type="text" name="periodo" requerid
+                                aria-required="true">
+                            <label for="periodo">Periodo</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">insert_invitation</i>
+                            <input type="text" name="año" requerid
+                                aria-required="true">
+                            <label for="año">Año</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">linear_scale</i>
+                            <input type="text" name="escala" requerid
+                                aria-required="true">
+                            <label for="escala">Escala</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">insert_comment</i>
+                            <input type="text" name="nota" requerid
+                                aria-required="true">
+                            <label for="nota">Nota</label>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <div class="row">
+                        <button class="btn waves-effect waves-light
+                            right" type="submit" name="action"
+                            onclick="click()">Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                        <a href="/trabaexpe/admin/" class="btn waves-effect
+                            waves-light right">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

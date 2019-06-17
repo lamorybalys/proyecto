@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<style>
+select{
+    display: none!important;
+}
+</style>
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="title text-capitalize">Nueva Seguro Social</h4>
+            <div class="row">
+                <form class="col s12" id="formValidate" role="form"
+                    method="POST" name="formulario">
+                    {% csrf_token %}
+                    
+                    {{form}}
+                    
+                    <br>
+                    <div class="row">
+                        <button class="btn waves-effect waves-light
+                            right" type="submit" name="action"
+                            onclick="click()">Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                        <a href="/trabaexpe/admin/" class="btn waves-effect
+                            waves-light right">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.getElementById("id_fech_func").setAttribute("type", "date");
+var today = new Date();
+    var dd = 1;
+    var mm = 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("dias").setAttribute("max", today);
+</script>
+{% endblock %}

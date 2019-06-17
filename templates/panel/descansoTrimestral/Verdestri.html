@@ -1,0 +1,380 @@
+{% extends '../../base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="flight-card" class="card">
+        <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+          <div class="card-title">
+            
+            <div class="col s2 m2 l2 center-align">
+                <h4 class="flight-card-title">Descanso Trimestral N° {{des_tri.cod_des_tri}}</h4>
+                <i class="material-icons" style="color: white;">near_me</i>
+            </div>
+            
+          </div>
+           
+        </div>
+        {% if messages %}
+              {% for message in messages %}
+            <div id="card-alert" class="card light-blue">
+              <div class="card-content white-text">
+                <p><i class="material-icons prefix">check</i>{{message}}</p>
+              </div>
+            </div>
+            {% endfor %}
+          {% endif %}
+          <p class="center font-weight-800" style="color: #0d4978;">Este simbolo significa "Si" selecciono <i class="material-icons">check_circle</i>  | Este simbolo significa "No" selecciono<i class="material-icons">highlight_off</i> </p>        
+          {% if des_tri.estatus != 'Pendiente' and request.user.is_trabajador %}
+          <div class="row">
+              <div class="col s10 offset-s1">
+                  <a href="{% url 'reportes:decadetail' des_tri.pk %}" target="__blank" class="btn waves-effect waves-light right">Imprimir</a>
+                </div>  
+            </div>  
+            {% endif %}
+        <br>
+        <div class="white-text">
+          <div class="card-content" style="    background: #ffffffe6">
+            <div class="row">
+              <div class="col s3 m3 l3 center-align center-align ">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                  <h6 style="color: #0d4978;">{{ des_tri.expediente }}</h6>
+                </div>
+              </div>
+              <div class="col s3 m3 l3 center-align center-align flight-state-two">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Tipo de solicitud</h5>
+                  <h6 style="color: #0d4978;">{{ des_tri.opci }}</h6>
+                </div>
+              </div>
+              <div class="col s3 m3 l3 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Fecha de Solicitud</h5>
+                        <h6 style="color: #0d4978;">{{ des_tri.fech_solici }}</h6>
+                    </div>
+                </div>
+                <div class="col s3 m3 l3 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Fecha de Fin</h5>
+                            <h6 style="color: #0d4978;">{{ des_tri.fech_fin }}</h6>
+                        </div>
+                    </div>
+            </div>
+            <br>
+            <div class="col s2 m2 l2 center-align" style="background-color: #0d4978 !important;">
+                <h4 class="flight-card-title">Obligatorios</h4>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s12 m6 l4 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Cargo libre nombramiento</h5>
+                    <h6 style="color: #0d4978;">
+                        {% if des_tri.carg_libr_nom == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                      
+                    {% endif %}</h6>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Fallecimiento familiar
+                            (zona metropolitana)</h5>
+                    <h6 style="color: #0d4978;">
+                            {% if des_tri.falle_fami_metro == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                      
+                    {% endif %}</h6>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Fallecimiento familiar
+                                (interior o exterior del pais)</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if des_tri.falle_fami_exte == 'on' %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                    <div class="col s12 m6 l4 center-align center-align ">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Comparencia ante los tribunales</h5>
+                        <h6 style="color: #0d4978;">
+                            {% if des_tri.com_ant_tribu == 'on' %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                          
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Enfermedad</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if des_tri.enfer == 'on' %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                          
+                        {% endif %}</h6>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                        <div class="flight-state">
+                            <h5 class="margin" style="color: #0d4978;">Accidente</h5>
+                            <h6 style="color: #0d4978;">
+                                    {% if des_tri.accid == 'on' %}
+                                    <p> <i class="material-icons">check_circle</i> </p>
+                                {% else %}
+                                    <p><i class="material-icons">highlight_off</i></p>
+                                
+                            {% endif %}</h6>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 l4 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Nacimiento de hijo</h5>
+                    <h6 style="color: #0d4978;">
+                        {% if des_tri.nacim_hij == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                        
+                    {% endif %}</h6>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Matrimonio</h5>
+                    <h6 style="color: #0d4978;">
+                            {% if des_tri.matrim == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                        
+                    {% endif %}</h6>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Pre-natal</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if des_tri.pre_natal == 'on' %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s12 m6 l12 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Post-natal</h5>
+                    <h6 style="color: #0d4978;">
+                        {% if des_tri.post_natal == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                        
+                    {% endif %}</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col s2 m2 l2 center-align" style="background-color: #0d4978 !important;">
+                <h4 class="flight-card-title">Potestativos</h4>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col s12 m6 l4 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Asistencia a curso ,seminario,
+                            conferencia o congreso.</h5>
+                    <h6 style="color: #0d4978;">
+                        {% if des_tri.asis_curs_confe == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                        
+                    {% endif %}</h6>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Enfermedad familiar</h5>
+                    <h6 style="color: #0d4978;">
+                            {% if des_tri.enfer_fami == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                        
+                    {% endif %}</h6>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Estudios academicos</h5>
+                        <h6 style="color: #0d4978;">
+                                {% if des_tri.estu_acade == 'on' %}
+                                <p> <i class="material-icons">check_circle</i> </p>
+                            {% else %}
+                                <p><i class="material-icons">highlight_off</i></p>
+                            
+                        {% endif %}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h5 class="margin" style="color: #0d4978;">Asistencia a consulta o examenes medicos:</h5>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col s12 m6 l4 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Diligencia personal</h5>
+                    <h6 style="color: #0d4978;">
+                        {% if des_tri.dili_pers == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                        
+                    {% endif %}</h6>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Enfermedad</h5>
+                    <h6 style="color: #0d4978;">
+                            {% if des_tri.enfer == 'on' %}
+                            <p> <i class="material-icons">check_circle</i> </p>
+                        {% else %}
+                            <p><i class="material-icons">highlight_off</i></p>
+                        
+                    {% endif %}</h6>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Otro(especifique)</h5>
+                        <h6 style="color: #0d4978;">
+                            {% if des_tri.otro == None %}
+                                <p><i class="material-icons">highlight_off</i>  </p>
+                            {% else %}
+                                <p>{{ des_tri.otro }}</p>
+                        {% endif %}</h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                {% if des_tri.observacion %}
+                <div class="col s6 m4 l6 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Observaciones</h5>
+                    <h6 style="color: #0d4978;">{{ des_tri.observacion }}</h6>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="col s6 m4 l6 center-align center-align ">
+                    <div class="flight-state">
+                    <h5 class="margin" style="color: #0d4978;">Estatus</h5>
+                    {% if des_tri.estatus == 'Aprobada' %}
+                            <h6 style="color: green;">{{ des_tri.estatus }}</h6>
+                        {% endif %}
+                        {% if des_tri.estatus == 'Rechazada' %}
+                            <h6 style="color: red;">{{ des_tri.estatus }}</h6>
+                        {% endif %}
+                        {% if des_tri.estatus == 'Pendiente' %}
+                            <h6 style="color: #0d4978;">{{ des_tri.estatus }}</h6>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            {% if des_tri.estatus == 'Pendiente' and user.is_analista_vacaciones %}
+            <form action="" id="form" method="post" style="color:black;">
+                {% csrf_token %}
+                <div class="row">
+
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="obs" name="observacion" required></textarea>
+                        <label for="obs">Observación:</label>
+                    </div>
+                    <div class="input-field col s12 hide">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="est1" name="estatus">Aprobada</textarea>
+                    </div>
+                    <div class="input-field col s12 hide">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="est2" name="estatus">Rechazada</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 center">
+    
+                            <button class="btn waves-effect ap" type="submit">Aceptar</button>
+                            <button class="btn waves-effect red re" type="submit">Rechazar</button>
+                        </div>   
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+            <br>
+            <br>
+            <div class="row">
+                <a href="/constancias/listdes_trim/" class="btn waves-effect
+                    waves-light right">Volver</a>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+      <script src="{% static 'lib/data-table-deparweb/js/jquery-3.3.1.js' %}"></script>
+      <script type="text/javascript">
+        $('.ap').on('click',function(e){
+            e.preventDefault();
+            
+            $('#est2').attr('disabled','disabled');
+            $('#est1').removeAttr('disabled');
+            obs = $('#obs').val()
+            if(obs.length <3){
+                $('#obs').focus()
+            }else{
+                $('#form').submit()
+            }
+
+
+      
+          })
+        $('.re').on('click',function(e){
+            e.preventDefault();
+            $('#est1').attr('disabled','disabled');
+            $('#est2').removeAttr('disabled');
+            obs = $('#obs').val()
+            if(obs.length <3){
+                $('#obs').focus()
+
+            }else{
+                $('#form').submit()
+
+            }
+
+          })
+      </script>
+{% endblock %}

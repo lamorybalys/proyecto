@@ -1,0 +1,13 @@
+Django==1.10
+django-carton==1.2.1
+django-widget-tweaks==1.4.3
+et-xmlfile==1.0.1
+jdcal==1.4.1
+mysql-connector-python==8.0.16
+mysqlclient==1.4.2
+openpyxl==2.5.1
+Pillow==5.4.1
+protobuf==3.8.0
+reportlab==3.5.13
+six==1.12.0
+

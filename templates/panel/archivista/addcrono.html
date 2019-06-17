@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="card-panel">
+            <h4 class="title text-capitalize">Nuevo cronologico</h4>
+            <div class="row">
+                <form class="col s12" id="formValidate" role="form"
+                    method="POST" name="formulario">
+                    {% csrf_token %}
+                    <!-- {{ crono.as_p }} -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">account_circle</i>
+                            <input type="number" name="cod_crono" requerid
+                                aria-required="true">
+                            <label for="cod_crono">Codigo</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">folder</i>
+                            <select name="expediente" id="expediente" onchange="habilitar(this)">
+                                {% for x,y in crono.fields.expediente.choices %}
+                                <option value="{{ x }}"{% if crono.fields.expediente.value == x %} selected{% endif %}>{{ y }}</option>
+                                {% endfor %}
+                            </select>
+                            <label for="expediente">Expediente</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">power_input</i>
+                            <input id="fech_des" name="fech_des" type="date" class="datepicker" requerid aria-required="true">
+                            <label for="fech_des">Fecha desde:</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">power_input</i>
+                            <input id="fech_has" name="fech_has" type="date" class="datepicker" requerid aria-required="true">
+                            <label for="fech_has">Fecha hasta:</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">library_books</i>
+                            <input type="text" name="carg_ante" requerid
+                                aria-required="true">
+                            <label for="carg_ante">Cargo anterior</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">business</i>
+                            <input type="text" name="institucion" requerid
+                                aria-required="true">
+                            <label for="institucion">Institucion</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <button class="btn waves-effect waves-light
+                            right" type="submit" name="action"
+                            onclick="click()">Guardar
+                            <i class="material-icons right">send</i>
+                        </button>
+                        <a href="/trabaexpe/admin/" class="btn waves-effect
+                            waves-light right">Volver</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,185 @@
+{% extends '../../base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div id="flight-card" class="card">
+        <div class="card-header accent-2" style="    background-color: #0d4978 !important;">
+          <div class="card-title">
+            
+            <div class="col s2 m2 l2 center-align">
+                <h4 class="flight-card-title">Jubilado N° {{jubi.cod_jubila}}</h4>
+                <i class="material-icons" style="color: white;">accessibility</i>
+            </div>
+          </div>
+        </div>
+
+        <div class="white-text">
+          <div class="card-content" style="    background: #ffffffe6">
+            <div class="row">
+                {% if messages %}
+                {% for message in messages %}
+              <div id="card-alert" class="card light-blue">
+                <div class="card-content white-text">
+                  <p><i class="material-icons prefix">check</i>{{message}}</p>
+                </div>
+              </div>
+              {% endfor %}
+            {% endif %}
+              <div class="col s4 m4 l4 center-align center-align ">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Expediente</h5>
+                  <h6 style="color: #0d4978;">{{ jubi.expediente }}</h6>
+                </div>
+              </div>
+              <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                <div class="flight-state">
+                  <h5 class="margin" style="color: #0d4978;">Fecha de solicitud</h5>
+                  <h6 style="color: #0d4978;">{{ jubi.fecha_s.date }}</h6>
+                </div>
+              </div>
+              <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Años de servicio</h5>
+                        <h6 style="color: #0d4978;">{{ jubi.expediente.trabajador.antiguedad }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Edad</h5>
+                        <h6 style="color: #0d4978;">{{ jubi.expediente.trabajador.edad }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Cargo</h5>
+                        <h6 style="color: #0d4978;">{{ jubi.expediente.trabajador.cargos }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Sexo</h5>
+                        <h6 style="color: #0d4978;">{{ jubi.expediente.trabajador.sexo }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align ">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Código de rac</h5>
+                        <h6 style="color: #0d4978;">{{ jubi.expediente.trabajador.cod_rac }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Número de ric</h5>
+                        <h6 style="color: #0d4978;">{{ jubi.expediente.trabajador.num_ric }}</h6>
+                    </div>
+                </div>
+                <div class="col s4 m4 l4 center-align center-align flight-state-two">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Estatus</h5>
+                        {% if jubi.estatus == 'Aprobada' %}
+                            <h6 style="color: green;">{{ jubi.estatus }}</h6>
+                        {% endif %}
+                        {% if jubi.estatus == 'Rechazada' %}
+                            <h6 style="color: red;">{{ jubi.estatus }}</h6>
+                        {% endif %}
+                        {% if jubi.estatus == 'Pendiente' %}
+                            <h6 style="color: #0d4978;">{{ jubi.estatus }}</h6>
+                        {% endif %}
+                        {% if jubi.estatus == 'Procesando' %}
+                            <h6 style="color: #0d4978;">{{ jubi.estatus }}</h6>
+                        {% endif %}
+                    </div>
+                </div>
+            {% if jubi.observacion %}
+            <div class="row">
+                <div class="col s12 m12 l12 center-align center-align">
+                    <div class="flight-state">
+                        <h5 class="margin" style="color: #0d4978;">Observación</h5>
+                        <h6 style="color: #0d4978;">{{ jubi.observacion }}</h6>
+                    </div>
+                </div>
+                
+            </div>
+            {% endif %}
+            </div>
+            {% if user.is_analista_jubilacion %}
+            <form action="{% url 'Constancias:updJubi' pk=jubi.id %}" id="form" method="post" style="color:black;">
+                {% csrf_token %}
+                {%  if jubi.estatus == 'Pendiente' %}
+                <div class="row">
+                    
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="obs" name="observacion"></textarea>
+                        <label for="obs">Observación:</label>
+                    </div>
+                    <div class="input-field col s12 hide">
+                        <i class="material-icons prefix">remove_red_eye</i>
+                        <textarea class="materialize-textarea"  id="est" name="estatus">Procesando</textarea>
+                        <textarea class="materialize-textarea"  id="est2" name="estatus">Rechazada</textarea>
+                        <label for="obs">Extension telefonica:</label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                        <button class="btn waves-effect ap" type="button">Aceptar</button>
+                        <button class="btn waves-effect red re" type="button">Rechazar</button>
+                    </div>   
+                </div>
+                {% endif %}
+                {% if jubi.estatus == 'Procesando' %}
+                <div class="input-field col s12 hide">
+                    <i class="material-icons prefix">remove_red_eye</i>
+                    <textarea class="materialize-textarea"  id="obs" name="observacion">{{jubi.observacion}}</textarea>
+                    <label for="obs">Observación:</label>
+                </div>
+                <div class="input-field col s12 hide">
+                    <i class="material-icons prefix">remove_red_eye</i>
+                    <textarea class="materialize-textarea"  id="est" name="estatus">Aprobada</textarea>
+                    <textarea class="materialize-textarea"  id="est2" name="estatus">Rechazada</textarea>
+
+                    <label for="obs">Extension telefonica:</label>
+                </div>
+                <div class="row">
+                    <div class="col s12 center">
+                      <h4>¿Se procesó correctamente la solicitud de jubilación?</h4>
+                        <button class="btn waves-effect ap" type="button">Si</button>
+                        <button class="btn waves-effect red re" type="button">No</button>
+
+                    </div>   
+                </div>
+                {% endif %}
+            </form>
+            <br>
+            {% endif %}
+            <br>
+            <div class="row">
+                <a href="/constancias/listjubi/" class="btn waves-effect
+                    waves-light right">Volver</a>
+            </div>
+          </div>
+        </div>
+      </div>
+<script src="{% static 'lib/data-table-deparweb/js/jquery-3.3.1.js' %}"></script>
+<script>
+  $('.ap').on('click',function(e){
+    e.preventDefault()
+    $('#est2').attr('disabled','disabled')
+    if($('#obs').val().length <10){
+      $('#obs').focus();
+    }else{
+      $('#form').submit()
+    }
+  });
+  $('.re').on('click',function(e){
+    e.preventDefault()
+    $('#est').attr('disabled','disabled')
+    if($('#obs').val().length <10){
+      $('#obs').focus();
+    }else{
+      $('#form').submit()
+    }
+  });
+</script>
+{% endblock %}

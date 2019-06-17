@@ -1,0 +1,406 @@
+{% extends '../base/base.html' %}
+{% load static %}
+{% block content %}
+
+        {% if messages %}
+            {% for message in messages %}
+          <div id="card-alert" class="card light-blue">
+            <div class="card-content white-text">
+              <p><i class="material-icons prefix">check</i>{{message}}</p>
+            </div>
+          </div>
+          {% endfor %}
+        {% endif %}
+          {% if user.is_superuser %}
+          <!--Aqui mostraras todo el contenido del administrador-->
+          <section id="content">
+            <!--start container-->
+            <div class="container">
+              <div id="card-alert" class="card light-blue">
+                <div class="card-content white-text">
+                  <p><i class="material-icons prefix">account_circle</i>¡Bienvenido Administrador!</p>
+                </div>
+              </div>
+              <!--card stats start-->
+              <div id="card-stats">
+                <div class="row mt-1">
+                  <div class="col s12 m6 l6">
+                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text">
+                      <div class="padding-4">
+                        <div class="col s7 m7">
+                          <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                          <p>Vacaciones</p>
+                        </div>
+                        <div class="col s5 m5 right-align">
+                          <h5 class="mb-0">Total</h5>
+                          <p>{% with total=vaca.count %} {{total}}</div>
+                              <div>{{total|pluralize}} {% endwith %}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s12 m6 l6">
+                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text contGrad--blue">
+                      <div class="padding-4">
+                        <div class="col s7 m7">
+                          <i class="material-icons background-round mt-5">perm_identity</i>
+                          <p>Jubilados</p>
+                        </div>
+                        <div class="col s5 m5 right-align">
+                          <h5 class="mb-0">Total</h5>
+                          <p>1,12,900</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="col s12 m6 l6">
+                      <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text contGrad--blue">
+                        <div class="padding-4">
+                          <div class="col s7 m7">
+                            <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                            <p>Expedientes</p>
+                          </div>
+                          <div class="col s5 m5 right-align">
+                            <h5 class="mb-0">Total</h5>
+                            <p>1,12,900</p>
+                            <div class="huge">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s12 m6 l6">
+                      <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text  gradient-45deg-light-blue-cyan">
+                        <div class="padding-4">
+                          <div class="col s7 m7">
+                            <i class="material-icons background-round mt-5">perm_identity</i>
+                            <p>Seguro Social</p>
+                          </div>
+                          <div class="col s5 m5 right-align">
+                            <h5 class="mb-0">Total</h5>
+                            <p>1,12,900</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </section>
+          {% endif %}
+          {% if user.is_analista_jubilacion %}
+          <!--Aqui mostraras todo el contenido del analista de jubilacion-->
+          <!-- START CONTENT -->
+        <section id="content">
+          <!--start container-->
+          <div class="container">
+            <!--card stats start-->
+            <div id="card-stats">
+              <div class="row mt-1">
+                <div class="col s12 m6 l4">
+                  <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text contGrad--bluesolid">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                        <p>Jubilados</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>1,12,900</p>
+                        <div class="huge">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l4">
+                  <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">perm_identity</i>
+                        <p>Permisos</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>1,12,900</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l4">
+                  <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">perm_identity</i>
+                        <p>Trabajadores</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>1,12,900</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if user.is_analista_social %}
+          <!--Aqui mostraras todo el contenido del analista de seguro social-->
+          <section id="content">
+          <!--start container-->
+          <div class="container">
+            <!--card stats start-->
+            <div id="card-stats">
+              <div class="row mt-1">
+                <div class="col s12 m6 l4">
+                  <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">perm_identity</i>
+                        <p>Seguro Social {{total|pluralize}}</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>{% with total=seg_soci.count %} {{total}} </p>
+                        <div> {% endwith %}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l4">
+                  <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="padding-4">
+                        <div class="col s7 m7">
+                          <i class="material-icons background-round mt-5">perm_identity</i>
+                          <p>Trabajadores{{total|pluralize}}</p>
+                        </div>
+                        <div class="col s5 m5 right-align">
+                          <h5 class="mb-0">Total</h5>
+                          <p>{% with total=traba.count %} {{total}} </p>
+                          <div> {% endwith %}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l4">
+                  <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                        <p>Jubilados{{total|pluralize}}</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>{% with total=jubi.count %} {{total}} </p>
+                        <div> {% endwith %}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if user.is_trabajador %}
+          <!--Aqui mostraras todo el contenido del analista del trabajador-->
+          <section id="content">
+          <!--start container-->
+          <div class="container">
+            <!--card stats start-->
+            <div id="card-stats">
+              <div class="row mt-1">
+                <div class="col s12 m6 l3">
+                  <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                        <p>Constancias</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h6 class="mb-0">TOTAL</h6>
+                        <div class="huge">
+                          <p>1,12,900</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l3">
+                  <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">perm_identity</i>
+                        <p>Vacaciones <br>Rechazadas</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h6 class="mb-0">TOTAL</h6>
+                        <p>1,12,900</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l3">
+                  <div class="card gradient-45deg-amber-amber gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">timeline</i>
+                        <p>Vacaciones <br>Aceptadas</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h6 class="mb-0">TOTAL</h6>
+                        <p>3,42,230</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end container-->
+        </section>
+          {% endif %}
+          {% if user.is_analista_vacaciones %}
+          <!--Aqui mostraras todo el contenido del analista de analista de vacaciones-->
+          <!--Aqui mostraras todo el contenido del analista de jubilacion-->
+          <!-- START CONTENT -->
+        <section id="content">
+          <!--start container-->
+          <div class="container">
+            <!--card stats start-->
+            <div id="card-stats">
+              <div class="row mt-1">
+                <div class="col s12 m6 l4">
+                  <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                        <p>Vacaciones{{total|pluralize}}</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>{% with total=vaca.count %} {{total}} </p>
+                        <div> {% endwith %}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l4">
+                  <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">perm_identity</i>
+                        <p>Trabajadores{{total|pluralize}}</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>{% with total=traba.count %} {{total}} </p>
+                        <div> {% endwith %}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          
+          <!--end container-->
+        </section>
+        {% if user.is_archivista %}
+          <!--Aqui mostraras todo el contenido del analista de analista de archivista-->
+          <!-- START CONTENT -->
+          
+        <section id="content">
+          <!--start container-->
+          <div class="container">
+            <div id="card-alert" class="card message--red">
+              <div class="card-content white-text">
+                <p><i class="material-icons prefix">account_circle</i>¡Bienvenido Archivista!</p>
+              </div>
+            </div>
+            <!--card stats start-->
+            <div id="card-stats">
+              <div class="row mt-1">
+                <div class="col s12 m6 l6">
+                  <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                        <p>Vacaciones{{total|pluralize}}</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>{% with total=vaca.count %} {{total}} </p>
+                        <div> {% endwith %}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 m6 l6">
+                  <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text contGrad--blue">
+                    <div class="padding-4">
+                      <div class="col s7 m7">
+                        <i class="material-icons background-round mt-5">perm_identity</i>
+                        <p>Trabajadores{{total|pluralize}}</p>
+                      </div>
+                      <div class="col s5 m5 right-align">
+                        <h5 class="mb-0">Total</h5>
+                        <p>{% with total=traba.count %} {{total}} </p>
+                        <div> {% endwith %}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-1">
+                  <div class="col s12 m6 l6">
+                    <div class="card gradient-45deg-light-blue-cyan gradient-shadow min-height-100 white-text contGrad--blue">
+                      <div class="padding-4">
+                        <div class="col s7 m7">
+                          <i class="material-icons background-round mt-5">add_shopping_cart</i>
+                          <p>Expedientes{{total|pluralize}}</p>
+                        </div>
+                        <div class="col s5 m5 right-align">
+                          <h5 class="mb-0">Total</h5>
+                          <p>{% with total=expe.count %} {{total}} </p>
+                          <div> {% endwith %}</div>
+                          <div class="huge">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s12 m6 l6">
+                    <div class="card gradient-45deg-red-pink gradient-shadow min-height-100 white-text  gradient-45deg-light-blue-cyan">
+                      <div class="padding-4">
+                        <div class="col s7 m7">
+                          <i class="material-icons background-round mt-5">perm_identity</i>
+                          <p>Seguro Social {{total|pluralize}}</p>
+                        </div>
+                        <div class="col s5 m5 right-align">
+                          <h5 class="mb-0">Total</h5>
+                          <p>{% with total=seg_soci.count %} {{total}} </p>
+                          <div> {% endwith %}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </section>
+          {% endif %}
+          
+          <!--end container-->
+        </section>
+      
+
+
+{% endblock %}
